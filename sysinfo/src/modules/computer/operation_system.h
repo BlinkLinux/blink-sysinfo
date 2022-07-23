@@ -5,10 +5,14 @@
 #ifndef SYSINFO_SRC_MODULES_COMPUTER_OPERATION_SYSTEM_H_
 #define SYSINFO_SRC_MODULES_COMPUTER_OPERATION_SYSTEM_H_
 
+#include "formats/computer/operation_system.h"
+
 namespace sysinfo {
 namespace computer {
 
 bool getOperationSystem(OperationSystem& os);
+
+QString detectDistro();
 
 }  // namespace computer
 }  // namespace sysinfo

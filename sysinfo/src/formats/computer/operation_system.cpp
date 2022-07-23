@@ -2,4 +2,10 @@
 // Use of this source is governed by General Public License that can be found
 // in the LICENSE file.
 
-#include "operation_system.h"
+#include "formats/computer/operation_system.h"
+
+namespace sysinfo {
+namespace computer {
+
+}  // namespace computer
+}  // namespace sysinfo

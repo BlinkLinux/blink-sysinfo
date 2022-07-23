@@ -7,6 +7,7 @@ set(SOURCE_FILES
     )
 
 set(TEST_FILES
+    computer/operation_system_test.cpp
     computer/uptime_test.cpp
     )
 
