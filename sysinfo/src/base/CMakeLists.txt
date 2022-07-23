@@ -2,6 +2,8 @@
 set(SOURCE_FILES
     file.cpp
     file.h
+    process.cpp
+    process.h
     )
 
 add_library(sysinfo-base STATIC
