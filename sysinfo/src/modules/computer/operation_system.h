@@ -20,6 +20,16 @@ QString getLanguageCodec();
 
 QString getLibcVersion();
 
+QString detectKdeVersion();
+
+QString detectGnomeVersion();
+
+QString detectWindowManager();
+
+QString detectXdgEnvironment(const char* env_var);
+
+QString detectDesktopEnvironment();
+
 }  // namespace computer
 }  // namespace sysinfo
 

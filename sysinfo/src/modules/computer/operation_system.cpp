@@ -201,5 +201,138 @@ QString getLibcVersion() {
   return QObject::tr("Unknown");
 }
 
+QString detectKdeVersion() {
+  const char *tmp = getenv("KDE_SESSION_VERSION");
+  QString cmd;
+  if (tmp && tmp[0] == '4') {
+    cmd = "kwin --version";
+  } else {
+    cmd = "kcontrol --version";
+  }
+
+  QString out;
+  const bool ok = getCommandOutput(cmd, out);
+  if (!ok) {
+    return {};
+  }
+
+  if (out.startsWith("KDE: ")) {
+    return out.left(static_cast<int>(strlen("KDE: ")));
+  }
+  return {};
+}
+
+QString detectGnomeVersion() {
+  QString out{};
+  bool ok = getCommandOutput("gnome-shell --version", out);
+  if (ok) {
+    if (out.startsWith("GNOME Shell ")) {
+      const QString gnome = out.left(static_cast<int>(strlen("GNOME Shell ")));
+      return QString("GNOME %1").arg(gnome);
+    }
+  }
+
+  ok = getCommandOutput("gnome-about --gnome-version", out);
+  if (ok) {
+    if (out.startsWith("Version: ")) {
+      const QString gnome = out.left(static_cast<int>(strlen("Version: ")));
+      return QString("GNOME %1").arg(gnome);
+    }
+  }
+
+  return {};
+}
+
+QString detectWindowManager() {
+  QString wm{};
+  // TODO(Shaohua): get wm info.
+  if (wm == "Xfwm4") {
+    return "XFCE 4";
+  }
+
+  QString curr_desktop = qEnvironmentVariable("XDG_CURRENT_DESKTOP");
+  if (!curr_desktop.isEmpty()) {
+    QString desk_session = qEnvironmentVariable("DESKTOP_SESSION");
+
+    if (!desk_session.isEmpty() && curr_desktop != desk_session)
+      return desk_session;
+  }
+
+  return QObject::tr("Unknown (Window Manager: %1)").arg(wm);
+}
+
+QString desktopWithSessionType(const QString& desktop_env) {
+  const QString value = qEnvironmentVariable("XDG_SESSION_TYPE");
+  if (!value.isEmpty() && value != "unspecified") {
+    // {desktop environment} on {session type}
+    return QString("%1 on %2").arg(desktop_env, value);
+  }
+
+  return desktop_env;
+}
+
+QString detectXdgEnvironment(const char* env_var) {
+  QString value = qEnvironmentVariable(env_var);
+  if (value.isEmpty()) {
+    return {};
+  }
+
+  if (value == "GNOME" || value == "gnome") {
+    QString maybe_gnome = detectGnomeVersion();
+    if (!maybe_gnome.isEmpty()) {
+      return maybe_gnome;
+    }
+  }
+
+  if (value == "KDE" || value == "kde") {
+    QString maybe_kde = detectKdeVersion();
+    if (!maybe_kde.isEmpty()) {
+      return maybe_kde;
+    }
+  }
+
+  return value;
+}
+
+
+QString detectDesktopEnvironment() {
+  QString wm = detectXdgEnvironment("XDG_CURRENT_DESKTOP");
+  if (!wm.isEmpty()) {
+    return wm;
+  }
+
+  wm = detectXdgEnvironment("XDG_SESSION_DESKTOP");
+  if (!wm.isEmpty()) {
+    return wm;
+  }
+
+  QString value = qEnvironmentVariable("KDE_FULL_SESSION");
+  if (!value.isEmpty()) {
+    QString maybe_kde = detectKdeVersion();
+    if (!maybe_kde.isEmpty()) {
+      return maybe_kde;
+    }
+  }
+  value = qEnvironmentVariable("GNOME_DESKTOP_SESSION_ID");
+  if (!value.isEmpty()) {
+    QString maybe_gnome = detectGnomeVersion();
+    if (!maybe_gnome.isEmpty()) {
+      return maybe_gnome;
+    }
+  }
+
+  wm = detectWindowManager();
+  if (!wm.isEmpty()) {
+    return wm;
+  }
+
+  value = qEnvironmentVariable("DISPLAY");
+  if (value.isEmpty()) {
+    return QObject::tr("Terminal");
+  }
+
+  return QObject::tr("Unknown");
+}
+
 }  // namespace computer
 }  // namespace sysinfo
