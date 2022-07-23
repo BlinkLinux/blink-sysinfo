@@ -5,8 +5,10 @@
 #ifndef SYSINFO_SRC_CONTROLLERS_SHELL_H_
 #define SYSINFO_SRC_CONTROLLERS_SHELL_H_
 
-class Shell {
+namespace sysinfo {
 
-};
+int initShell(int argc, char** argv);
+
+}  // namespace sysinfo
 
 #endif //SYSINFO_SRC_CONTROLLERS_SHELL_H_

@@ -2,4 +2,23 @@
 // Use of this source is governed by GNU General Public License
 // that can be found in the LICENSE file.
 
-#include "shell.h"
+#include "controllers/shell.h"
+
+#include <QCoreApplication>
+
+#include "controllers/main_controller.h"
+
+namespace sysinfo {
+
+int initShell(int argc, char** argv) {
+  QCoreApplication app(argc, argv);
+  QCoreApplication::setApplicationName("sysinfo");
+  //QCoreApplication::setApplicationVersion(kVersionGui);
+
+  QScopedPointer<MainController> controller(new MainController());
+  controller->init();
+
+  return QCoreApplication::exec();
+}
+
+}  // namespace sysinfo
