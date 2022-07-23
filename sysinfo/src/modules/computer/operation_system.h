@@ -14,6 +14,10 @@ bool getOperationSystem(OperationSystem& os);
 
 QString detectDistro();
 
+QString getLanguage();
+
+QString getLanguageCodec();
+
 }  // namespace computer
 }  // namespace sysinfo
 

@@ -16,6 +16,7 @@ struct OperationSystem {
   QString kernel{};
   QString hostname{};
   QString language{};
+  QString lang_codec{};
   QString homedir{};
   QString username{};
   QString glibc{};

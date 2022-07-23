@@ -3,6 +3,7 @@
 // that can be found in the LICENSE file.
 
 #include <gtest/gtest.h>
+#include <QDebug>
 
 #include "modules/computer/operation_system.h"
 
@@ -12,6 +13,18 @@ namespace computer {
 TEST(OsTest, TestDetectDistro) {
   const QString distro = detectDistro();
   ASSERT_TRUE(distro.startsWith("Debian GNU/Linux"));
+}
+
+TEST(OsTest, TestGetLanguage) {
+  const QString language = getLanguage();
+  ASSERT_FALSE(language.isEmpty());
+}
+
+TEST(OsTest, TestGetLanguageCodec) {
+  const QString lang_codec = getLanguageCodec();
+  ASSERT_FALSE(lang_codec.isEmpty());
+  qDebug() << "lang_codec:" << lang_codec;
+  ASSERT_TRUE(lang_codec.contains("UTF-8"));
 }
 
 }  // namespace computer
