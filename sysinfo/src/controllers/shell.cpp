@@ -8,6 +8,7 @@
 #include <Logger.h>
 #include <ConsoleAppender.h>
 
+#include "config/config.h"
 #include "controllers/main_controller.h"
 
 namespace sysinfo {
@@ -15,7 +16,7 @@ namespace sysinfo {
 int initShell(int argc, char** argv) {
   QCoreApplication app(argc, argv);
   QCoreApplication::setApplicationName("sysinfo");
-  //QCoreApplication::setApplicationVersion(kVersionGui);
+  QCoreApplication::setApplicationVersion(kAppVersion);
   cuteLogger->registerAppender(new ConsoleAppender);
 
   QScopedPointer<MainController> controller(new MainController());

@@ -13,6 +13,8 @@ set(LINK_LIBS
     )
 
 set(SOURCE_FILES
+    config/config.h
+
     controllers/main_controller.cpp
     controllers/main_controller.h
     controllers/shell.cpp
