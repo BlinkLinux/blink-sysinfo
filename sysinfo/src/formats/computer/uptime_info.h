@@ -14,6 +14,7 @@ struct UptimeInfo {
   qint32 days{};
   qint32 hours{};
   qint32 minutes{};
+  qint32 seconds{};
 };
 
 }  // namespace computer

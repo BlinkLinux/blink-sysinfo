@@ -4,6 +4,8 @@
 
 #include "modules/computer/uptime.h"
 
+#include <QDebug>
+
 #include "base/file.h"
 
 namespace sysinfo {
@@ -12,16 +14,20 @@ namespace computer {
 bool getUptime(UptimeInfo& info) {
   QString content;
   if (!readTextFile("/proc/uptime", content)) {
+    qWarning() << "Failed to read uptime file!";
     return false;
   }
 
   bool ok = true;
-  const qint32 minutes = content.trimmed().toInt(&ok);
+  const auto uptime_str = content.splitRef(" ").at(0);
+  const double minutes = uptime_str.toDouble(&ok);
   if (!ok) {
+    qWarning() << "Failed to convert uptime to integer";
     return false;
   }
 
-  info.minutes = minutes;
+  info.minutes = static_cast<qint32>(minutes);
+  info.seconds = static_cast<qint32>((minutes - static_cast<double>(info.minutes)) * 60.0 / 100.0);
   info.hours = info.minutes / 60;
   info.minutes %= 60;
   info.days = info.hours / 24;
