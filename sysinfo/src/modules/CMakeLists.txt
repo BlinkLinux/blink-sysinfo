@@ -9,4 +9,6 @@ add_library(sysinfo-modules STATIC
     )
 target_link_libraries(sysinfo-modules
     Qt5::Core
+
+    sysinfo-formats
     )
