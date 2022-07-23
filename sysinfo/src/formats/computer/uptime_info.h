@@ -5,6 +5,7 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_INFO_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_INFO_H_
 
+#include <QDebug>
 #include <QtGlobal>
 
 namespace sysinfo {
@@ -17,7 +18,11 @@ struct UptimeInfo {
   qint32 seconds{};
 };
 
+QDebug operator<<(QDebug stream, const UptimeInfo& info);
+
 }  // namespace computer
 }  // namespace sysinfo
+
+Q_DECLARE_METATYPE(sysinfo::computer::UptimeInfo)
 
 #endif  // SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_INFO_H_

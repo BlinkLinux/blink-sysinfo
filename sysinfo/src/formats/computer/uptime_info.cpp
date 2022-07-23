@@ -7,5 +7,16 @@
 namespace sysinfo {
 namespace computer {
 
+QDebug operator<<(QDebug stream, const UptimeInfo& info) {
+  stream << "UptimeInfo {"
+         << "\n  days:" << info.days
+         << "\n  hours:" << info.hours
+         << "\n  minutes:" << info.minutes
+         << "\n  seconds:" << info.seconds
+         << "\n}";
+  return stream;
+}
+
+
 }  // namespace computer
 }  // namespace sysinfo

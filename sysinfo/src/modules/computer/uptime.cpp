@@ -20,14 +20,15 @@ bool getUptime(UptimeInfo& info) {
 
   bool ok = true;
   const auto uptime_str = content.splitRef(" ").at(0);
-  const double minutes = uptime_str.toDouble(&ok);
+  const double seconds = uptime_str.toDouble(&ok);
   if (!ok) {
     qWarning() << "Failed to convert uptime to integer";
     return false;
   }
 
-  info.minutes = static_cast<qint32>(minutes);
-  info.seconds = static_cast<qint32>((minutes - static_cast<double>(info.minutes)) * 60.0 / 100.0);
+  info.seconds = static_cast<qint32>(seconds);
+  info.minutes = info.seconds / 60;
+  info.seconds %= 60;
   info.hours = info.minutes / 60;
   info.minutes %= 60;
   info.days = info.hours / 24;
