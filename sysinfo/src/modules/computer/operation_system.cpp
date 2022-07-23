@@ -4,7 +4,10 @@
 
 #include "modules/computer/operation_system.h"
 
+#include <pwd.h>
+#include <sys/types.h>
 #include <sys/utsname.h>
+#include <unistd.h>
 
 #include <QDebug>
 #include <QDir>
@@ -32,8 +35,19 @@ bool getOperationSystem(OperationSystem& os) {
   os.language = getLanguage();
   os.lang_codec = getLanguageCodec();
   os.homedir = QDir::homePath();
+  {
+    struct passwd* pwd = getpwuid(getuid());
+    if (pwd != nullptr) {
+      os.username = pwd->pw_name;
+    }
+    pwd = getpwuid(geteuid());
+    if (pwd != nullptr) {
+      os.real_user = pwd->pw_name;
+    }
+  }
+  os.libc = getLibcVersion();
 
-  return false;
+  return true;
 }
 
 QString detectDistro() {
@@ -136,6 +150,52 @@ QString getLanguageCodec() {
     }
   } else if (lc != nullptr) {
     return lc;
+  }
+
+  return QObject::tr("Unknown");
+}
+
+QString getLibcVersion() {
+  constexpr const struct {
+    const char* test_cmd;
+    const char* match_str;
+    const char* lib_name;
+    bool try_ver_str;
+    bool use_stderr;
+  } libs[] = {
+      { "ldd --version", "GLIBC", "GNU C Library", true, false},
+      { "ldd --version", "GNU libc", "GNU C Library", true, false},
+      { "ldconfig -V", "GLIBC", "GNU C Library", true, false},
+      { "ldconfig -V", "GNU libc", "GNU C Library", true, false},
+      { "ldconfig -v", "uClibc", "uClibc or uClibc-ng", false, false},
+      { "diet", "diet version", "diet libc", true, true},
+  };
+
+  QString out;
+  QString err;
+  for (const auto& lib : libs) {
+    const bool ok = getCommandOutput(lib.test_cmd, out, err);
+    if (!ok) {
+      continue;
+    }
+
+    const int out_line = out.indexOf("\n");
+    const int err_line = err.indexOf("\n");
+    const QString& out_ref = lib.use_stderr ? err.left(err_line) : out.left(out_line);
+
+    if (!out_ref.contains(lib.match_str)) {
+      continue;
+    }
+
+    if (lib.try_ver_str) {
+      // skip the first word, likely "ldconfig" or name of utility
+      const int ver_index = out_ref.indexOf(' ');
+      if (ver_index) {
+        return QString("%1 / %2").arg(lib.lib_name, out_ref.mid(ver_index + 1));
+      }
+    }
+
+    return lib.lib_name;
   }
 
   return QObject::tr("Unknown");

@@ -10,21 +10,39 @@
 namespace sysinfo {
 
 bool getCommandOutput(const QString& cmd, QString& output) {
-  return getCommandOutput(cmd, {}, output);
+  QString err{};
+  return getCommandOutput(cmd, output, err);
 }
 
 bool getCommandOutput(const QString& cmd, const QStringList& args, QString& output) {
+  QString err;
+  return getCommandOutput(cmd, args, output, err);
+}
+
+bool getCommandOutput(const QString& cmd, QString& output, QString& err) {
+  QProcess process;
+  process.setProgram("sh");
+  process.setArguments({
+    "-c",
+    cmd,
+  });
+  process.start();
+  process.waitForFinished();
+  const bool ok = (process.exitStatus() == QProcess::ExitStatus::NormalExit && process.exitCode() == 0);
+  output = process.readAllStandardOutput();
+  err = process.readAllStandardError();
+  return ok;
+}
+
+bool getCommandOutput(const QString& cmd, const QStringList& args, QString& output, QString& err) {
   QProcess process;
   process.setProgram(cmd);
   process.setArguments(args);
   process.start();
   process.waitForFinished();
   const bool ok = (process.exitStatus() == QProcess::ExitStatus::NormalExit && process.exitCode() == 0);
-  if (ok) {
-    output = process.readAllStandardOutput();
-  } else {
-    qWarning() << process.readAllStandardError();
-  }
+  output = process.readAllStandardOutput();
+  err = process.readAllStandardError();
   return ok;
 }
 

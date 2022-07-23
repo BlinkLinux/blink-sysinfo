@@ -18,6 +18,8 @@ QString getLanguage();
 
 QString getLanguageCodec();
 
+QString getLibcVersion();
+
 }  // namespace computer
 }  // namespace sysinfo
 

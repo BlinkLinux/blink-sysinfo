@@ -27,5 +27,11 @@ TEST(OsTest, TestGetLanguageCodec) {
   ASSERT_TRUE(lang_codec.contains("UTF-8"));
 }
 
+TEST(OsTest, TestGetLibc) {
+  const QString libc = getLibcVersion();
+  ASSERT_FALSE(libc.isEmpty());
+  ASSERT_TRUE(libc.startsWith("GNU C Library"));
+}
+
 }  // namespace computer
 }  // namespace sysinfo

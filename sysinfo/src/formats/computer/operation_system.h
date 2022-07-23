@@ -19,7 +19,8 @@ struct OperationSystem {
   QString lang_codec{};
   QString homedir{};
   QString username{};
-  QString glibc{};
+  QString real_user{};
+  QString libc{};
 
   QString desktop{};
   QString entropy_avail{};

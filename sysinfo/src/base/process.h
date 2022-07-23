@@ -11,7 +11,9 @@
 namespace sysinfo {
 
 bool getCommandOutput(const QString& cmd, QString& output);
+bool getCommandOutput(const QString& cmd, QString& output, QString& err);
 bool getCommandOutput(const QString& cmd, const QStringList& args, QString& output);
+bool getCommandOutput(const QString& cmd, const QStringList& args, QString& output, QString& err);
 
 }  // namespace sysinfo
 
