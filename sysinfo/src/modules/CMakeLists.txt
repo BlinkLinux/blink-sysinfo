@@ -1,5 +1,7 @@
 
 set(SOURCE_FILES
+    computer/operation_system.cpp
+    computer/operation_system.h
     computer/uptime.cpp
     computer/uptime.h
     )
