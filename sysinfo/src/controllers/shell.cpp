@@ -5,6 +5,8 @@
 #include "controllers/shell.h"
 
 #include <QCoreApplication>
+#include <Logger.h>
+#include <ConsoleAppender.h>
 
 #include "controllers/main_controller.h"
 
@@ -14,6 +16,7 @@ int initShell(int argc, char** argv) {
   QCoreApplication app(argc, argv);
   QCoreApplication::setApplicationName("sysinfo");
   //QCoreApplication::setApplicationVersion(kVersionGui);
+  cuteLogger->registerAppender(new ConsoleAppender);
 
   QScopedPointer<MainController> controller(new MainController());
   controller->init();

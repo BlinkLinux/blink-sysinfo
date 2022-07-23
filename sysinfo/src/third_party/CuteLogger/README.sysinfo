@@ -1,0 +1,6 @@
+Name: CuteLogger
+Author: dept2
+Branch: master
+Home: https://github.com/dept2/CuteLogger
+License: LGPL-2.1
+Description: Logger: simple, convinient and thread safe logger for Qt-based C++ apps

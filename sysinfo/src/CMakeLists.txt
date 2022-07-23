@@ -1,4 +1,6 @@
 
+add_subdirectory(third_party)
+
 find_package(Qt5 5.12 COMPONENTS Core Network REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -6,6 +8,8 @@ set(CMAKE_AUTORCC ON)
 set(LINK_LIBS
     Qt5::Core
     Qt5::Network
+
+    CuteLogger
     )
 
 set(SOURCE_FILES
