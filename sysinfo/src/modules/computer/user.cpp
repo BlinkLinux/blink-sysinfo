@@ -10,8 +10,7 @@ namespace sysinfo {
 namespace computer {
 
 bool getUserList(UserList& list) {
-  struct passwd* pw = nullptr;
-  pw = getpwent();
+  struct passwd* pw = getpwent();
   if (pw == nullptr) {
     return false;
   }
