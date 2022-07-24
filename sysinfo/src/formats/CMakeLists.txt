@@ -13,6 +13,8 @@ set(SOURCE_FILES
     computer/groups.h
     computer/languages.cpp
     computer/languages.h
+    computer/memory.cpp
+    computer/memory.h
     computer/modules.cpp
     computer/modules.h
     computer/operation_system.cpp

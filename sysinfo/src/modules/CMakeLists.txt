@@ -14,6 +14,8 @@ set(SOURCE_FILES
     computer/groups.h
     computer/languages.cpp
     computer/languages.h
+    computer/memory.cpp
+    computer/memory.h
     computer/modules.cpp
     computer/modules.h
     computer/operation_system.cpp
@@ -31,6 +33,7 @@ set(TEST_FILES
     computer/filesystem_test.cpp
     computer/groups_test.cpp
     computer/languages_test.cpp
+    computer/memory_test.cpp
     computer/modules_test.cpp
     computer/operation_system_test.cpp
     computer/uptime_test.cpp
