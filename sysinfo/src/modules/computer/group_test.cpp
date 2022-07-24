@@ -15,6 +15,7 @@ TEST(GroupTest, TestGetGroupList) {
   ASSERT_TRUE(ok);
   ASSERT_GT(list.length(), 5);
   ASSERT_EQ(list.first().gid, 0);
+  ASSERT_EQ(list.first().members, QStringList("root"));
 }
 
 }  // namespace computer

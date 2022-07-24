@@ -7,6 +7,8 @@
 #include <sys/types.h>
 #include <grp.h>
 
+#include "modules/computer/user.h"
+
 namespace sysinfo {
 namespace computer {
 
@@ -25,7 +27,6 @@ bool getGroupList(GroupList& list) {
     if (gr->gr_mem != nullptr && *gr->gr_mem != nullptr) {
       for (int i = 0; gr->gr_mem[i] != nullptr; ++i) {
         const char* name = gr->gr_mem[i];
-        printf("name: %s\n", name);
         group.members.append(name);
       }
     }
@@ -33,9 +34,22 @@ bool getGroupList(GroupList& list) {
     list.append(group);
     gr = getgrent();
   }
-
-
   endgrent();
+
+  // Merge user list.
+  UserList user_list;
+  const bool ok = getUserList(user_list);
+  if (!ok) {
+    return false;
+  }
+  for (auto& group : list) {
+    for (const auto& user : user_list) {
+      if (user.gid == group.gid) {
+        group.members.append(user.name);
+      }
+    }
+  }
+
   return true;
 }
 
