@@ -5,6 +5,8 @@ set(SOURCE_FILES
     computer/development.cpp
     computer/development.h
     computer/environment.h
+    computer/filesystem.cpp
+    computer/filesystem.h
     computer/groups.cpp
     computer/groups.h
     computer/languages.cpp
