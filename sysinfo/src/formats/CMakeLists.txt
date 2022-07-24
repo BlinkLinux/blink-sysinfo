@@ -5,6 +5,8 @@ set(SOURCE_FILES
     computer/environment.h
     computer/group.cpp
     computer/group.h
+    computer/language.cpp
+    computer/language.h
     computer/operation_system.cpp
     computer/operation_system.h
     computer/uptime_info.cpp

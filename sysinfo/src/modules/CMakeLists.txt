@@ -6,6 +6,8 @@ set(SOURCE_FILES
     computer/environment.h
     computer/group.cpp
     computer/group.h
+    computer/language.cpp
+    computer/language.h
     computer/operation_system.cpp
     computer/operation_system.h
     computer/uptime.cpp
@@ -17,6 +19,7 @@ set(SOURCE_FILES
 set(TEST_FILES
     computer/bootup_test.cpp
     computer/group_test.cpp
+    computer/language_test.cpp
     computer/operation_system_test.cpp
     computer/uptime_test.cpp
     computer/user_test.cpp
