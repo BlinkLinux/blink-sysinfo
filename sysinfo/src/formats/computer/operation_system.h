@@ -6,6 +6,7 @@
 #define SYSINFO_SRC_FORMATS_COMPUTER_OPERATION_SYSTEM_H_
 
 #include <QString>
+#include <QStringList>
 
 namespace sysinfo {
 namespace computer {
@@ -21,9 +22,8 @@ struct OperationSystem {
   QString username{};
   QString real_user{};
   QString libc{};
-
   QString desktop{};
-  QString entropy_avail{};
+  QStringList load_avg{};
 };
 
 }  // namespace computer

@@ -33,5 +33,17 @@ TEST(OsTest, TestGetLibc) {
   ASSERT_TRUE(libc.startsWith("GNU C Library"));
 }
 
+TEST(OsTest, TestDesktopEnvironment) {
+  const QString desktop = detectDesktopEnvironment();
+  qDebug() << "desktop:" << desktop;
+  ASSERT_FALSE(desktop.isEmpty());
+}
+
+TEST(OsTest, TestLoadAverage) {
+  const auto& list = getLoadAverage();
+  qDebug() << "load avg:" << list;
+  ASSERT_EQ(list.length(), 3);
+}
+
 }  // namespace computer
 }  // namespace sysinfo

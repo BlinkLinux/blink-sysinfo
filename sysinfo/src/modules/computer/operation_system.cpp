@@ -47,6 +47,8 @@ bool getOperationSystem(OperationSystem& os) {
   }
   os.libc = getLibcVersion();
 
+  os.load_avg = getLoadAverage();
+
   return true;
 }
 
@@ -332,6 +334,19 @@ QString detectDesktopEnvironment() {
   }
 
   return QObject::tr("Unknown");
+}
+
+QStringList getLoadAverage() {
+  QString content{};
+  if (!readTextFile("/proc/loadavg", content)) {
+    return {};
+  }
+
+  QStringList parts = content.split(' ');
+  if (parts.length() < 3) {
+    return parts;
+  }
+  return { parts.at(0), parts.at(1), parts.at(2) };
 }
 
 }  // namespace computer
