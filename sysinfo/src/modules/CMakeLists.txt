@@ -1,5 +1,7 @@
 
 set(SOURCE_FILES
+    computer/bootup.cpp
+    computer/bootup.h
     computer/operation_system.cpp
     computer/operation_system.h
     computer/uptime.cpp
@@ -7,6 +9,7 @@ set(SOURCE_FILES
     )
 
 set(TEST_FILES
+    computer/bootup_test.cpp
     computer/operation_system_test.cpp
     computer/uptime_test.cpp
     )

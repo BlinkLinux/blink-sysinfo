@@ -1,5 +1,7 @@
 
 set(SOURCE_FILES
+    computer/bootup.cpp
+    computer/bootup.h
     computer/operation_system.cpp
     computer/operation_system.h
     computer/uptime_info.cpp
