@@ -4,17 +4,18 @@
 
 #include <gtest/gtest.h>
 
-#include "modules/computer/user.h"
+#include "modules/computer/groups.h"
 
 namespace sysinfo {
 namespace computer {
 
-TEST(UserTest, TestGetUserList) {
-  UserList list;
-  const bool ok = getUserList(list);
+TEST(GroupTest, TestGetGroupList) {
+  GroupList list;
+  const bool ok = getGroupList(list);
   ASSERT_TRUE(ok);
   ASSERT_GT(list.length(), 5);
-  ASSERT_EQ(list.first().uid, 0);
+  ASSERT_EQ(list.first().gid, 0);
+  ASSERT_EQ(list.first().members, QStringList("root"));
 }
 
 }  // namespace computer

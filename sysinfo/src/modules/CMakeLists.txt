@@ -1,28 +1,28 @@
 
 set(SOURCE_FILES
-    computer/bootup.cpp
-    computer/bootup.h
+    computer/boots.cpp
+    computer/boots.h
     computer/environment.cpp
     computer/environment.h
-    computer/group.cpp
-    computer/group.h
-    computer/language.cpp
-    computer/language.h
+    computer/groups.cpp
+    computer/groups.h
+    computer/languages.cpp
+    computer/languages.h
     computer/operation_system.cpp
     computer/operation_system.h
     computer/uptime.cpp
     computer/uptime.h
-    computer/user.cpp
-    computer/user.h
+    computer/users.cpp
+    computer/users.h
     )
 
 set(TEST_FILES
-    computer/bootup_test.cpp
-    computer/group_test.cpp
-    computer/language_test.cpp
+    computer/boots_test.cpp
+    computer/groups_test.cpp
+    computer/languages_test.cpp
     computer/operation_system_test.cpp
     computer/uptime_test.cpp
-    computer/user_test.cpp
+    computer/users_test.cpp
     )
 
 add_library(sysinfo-modules STATIC

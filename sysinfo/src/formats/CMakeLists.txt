@@ -1,18 +1,18 @@
 
 set(SOURCE_FILES
-    computer/bootup.cpp
-    computer/bootup.h
+    computer/boots.cpp
+    computer/boots.h
     computer/environment.h
-    computer/group.cpp
-    computer/group.h
-    computer/language.cpp
-    computer/language.h
+    computer/groups.cpp
+    computer/groups.h
+    computer/languages.cpp
+    computer/languages.h
     computer/operation_system.cpp
     computer/operation_system.h
-    computer/uptime_info.cpp
-    computer/uptime_info.h
-    computer/user.cpp
-    computer/user.h
+    computer/uptime.cpp
+    computer/uptime.h
+    computer/users.cpp
+    computer/users.h
     )
 
 add_library(sysinfo-formats STATIC

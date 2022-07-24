@@ -2,8 +2,8 @@
 // Use of this source is governed by GNU General Public License
 // that can be found in the LICENSE file.
 
-#ifndef SYSINFO_SRC_FORMATS_COMPUTER_LANGUAGE_H_
-#define SYSINFO_SRC_FORMATS_COMPUTER_LANGUAGE_H_
+#ifndef SYSINFO_SRC_FORMATS_COMPUTER_LANGUAGES_H_
+#define SYSINFO_SRC_FORMATS_COMPUTER_LANGUAGES_H_
 
 #include <QString>
 #include <QVector>
@@ -29,4 +29,4 @@ using LanguageList = QVector<LocaleInfo>;
 }  // namespace computer
 }  // namespace sysinfo
 
-#endif //SYSINFO_SRC_FORMATS_COMPUTER_LANGUAGE_H_
+#endif //SYSINFO_SRC_FORMATS_COMPUTER_LANGUAGES_H_

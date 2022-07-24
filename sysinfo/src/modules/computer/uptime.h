@@ -5,12 +5,12 @@
 #ifndef SYSINFO_SRC_MODULES_COMPUTER_UPTIME_H_
 #define SYSINFO_SRC_MODULES_COMPUTER_UPTIME_H_
 
-#include "formats/computer/uptime_info.h"
+#include "formats/computer/uptime.h"
 
 namespace sysinfo {
 namespace computer {
 
-bool getUptime(UptimeInfo& info);
+bool getUptime(Uptime& info);
 
 }  // namespace computer
 }  // namespace sysinfo

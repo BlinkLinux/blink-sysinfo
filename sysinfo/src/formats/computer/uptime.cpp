@@ -2,13 +2,13 @@
 // Use of this source is governed by General Public License that can be found
 // in the LICENSE file.
 
-#include "formats/computer/uptime_info.h"
+#include "formats/computer/uptime.h"
 
 namespace sysinfo {
 namespace computer {
 
-QDebug operator<<(QDebug stream, const UptimeInfo& info) {
-  stream << "UptimeInfo {"
+QDebug operator<<(QDebug stream, const Uptime& info) {
+  stream << "Uptime {"
          << "\n  days:" << info.days
          << "\n  hours:" << info.hours
          << "\n  minutes:" << info.minutes

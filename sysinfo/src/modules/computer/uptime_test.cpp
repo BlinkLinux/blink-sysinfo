@@ -10,7 +10,7 @@ namespace sysinfo {
 namespace computer {
 
 TEST(UptimeTest, TestGetUptime) {
-  UptimeInfo info{};
+  Uptime info{};
   const bool ok = getUptime(info);
   ASSERT_TRUE(ok);
   ASSERT_GT(info.minutes + info.hours + info.days, 0);

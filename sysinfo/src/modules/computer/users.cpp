@@ -2,7 +2,7 @@
 // Use of this source is governed by GNU General Public License
 // that can be found in the LICENSE file.
 
-#include "modules/computer/user.h"
+#include "modules/computer/users.h"
 
 #include <pwd.h>
 

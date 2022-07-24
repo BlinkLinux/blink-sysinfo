@@ -11,7 +11,7 @@
 namespace sysinfo {
 namespace computer {
 
-bool getUptime(UptimeInfo& info) {
+bool getUptime(Uptime& info) {
   QString content;
   if (!readTextFile("/proc/uptime", content)) {
     qWarning() << "Failed to read uptime file!";

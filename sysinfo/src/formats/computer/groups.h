@@ -2,27 +2,25 @@
 // Use of this source is governed by GNU General Public License
 // that can be found in the LICENSE file.
 
-#ifndef SYSINFO_SRC_FORMATS_COMPUTER_USER_H_
-#define SYSINFO_SRC_FORMATS_COMPUTER_USER_H_
+#ifndef SYSINFO_SRC_FORMATS_COMPUTER_GROUPS_H_
+#define SYSINFO_SRC_FORMATS_COMPUTER_GROUPS_H_
 
 #include <QString>
+#include <QStringList>
 #include <QVector>
 
 namespace sysinfo {
 namespace computer {
 
-struct User {
+struct Group {
   QString name{};
-  QString display_name{};
-  qint32 uid{};
   qint32 gid{};
-  QString home{};
-  QString shell{};
+  QStringList members{};
 };
 
-using UserList = QVector<User>;
+using GroupList = QVector<Group>;
 
 }  // namespace computer
 }  // namespace sysinfo
 
-#endif //SYSINFO_SRC_FORMATS_COMPUTER_USER_H_
+#endif //SYSINFO_SRC_FORMATS_COMPUTER_GROUPS_H_

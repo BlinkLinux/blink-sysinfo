@@ -2,17 +2,17 @@
 // Use of this source is governed by GNU General Public License
 // that can be found in the LICENSE file.
 
-#ifndef SYSINFO_SRC_MODULES_COMPUTER_BOOTUP_H_
-#define SYSINFO_SRC_MODULES_COMPUTER_BOOTUP_H_
+#ifndef SYSINFO_SRC_MODULES_COMPUTER_USERS_H_
+#define SYSINFO_SRC_MODULES_COMPUTER_USERS_H_
 
-#include "formats/computer/bootup.h"
+#include "formats/computer/users.h"
 
 namespace sysinfo {
 namespace computer {
 
-bool getBootup(BootupList& list);
+bool getUserList(UserList& list);
 
 }  // namespace computer
 }  // namespace sysinfo
 
-#endif //SYSINFO_SRC_MODULES_COMPUTER_BOOTUP_H_
+#endif //SYSINFO_SRC_MODULES_COMPUTER_USERS_H_

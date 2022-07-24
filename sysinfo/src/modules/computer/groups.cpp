@@ -2,12 +2,12 @@
 // Use of this source is governed by GNU General Public License
 // that can be found in the LICENSE file.
 
-#include "modules/computer/group.h"
+#include "modules/computer/groups.h"
 
 #include <sys/types.h>
 #include <grp.h>
 
-#include "modules/computer/user.h"
+#include "modules/computer/users.h"
 
 namespace sysinfo {
 namespace computer {

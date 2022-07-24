@@ -4,18 +4,16 @@
 
 #include <gtest/gtest.h>
 
-#include "modules/computer/bootup.h"
+#include "modules/computer/languages.h"
 
 namespace sysinfo {
 namespace computer {
 
-TEST(BootupTest, TestGetBootup) {
-  BootupList list;
-  const bool ok = getBootup(list);
+TEST(LanguageTest, TestGetLanguageList) {
+  LanguageList list;
+  const bool ok = getLanguageList(list);
   ASSERT_TRUE(ok);
   ASSERT_GT(list.length(), 1);
-  ASSERT_TRUE(list.at(0).start_time.isValid());
-  ASSERT_LT(list.at(0).start_time, QDateTime::currentDateTime());
 }
 
 }  // namespace computer

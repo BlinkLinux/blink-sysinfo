@@ -2,4 +2,10 @@
 // Use of this source is governed by GNU General Public License
 // that can be found in the LICENSE file.
 
-#include "language.h"
+#include "formats/computer/groups.h"
+
+namespace sysinfo {
+namespace computer {
+
+}  // namespace computer
+}  // namespace sysinfo

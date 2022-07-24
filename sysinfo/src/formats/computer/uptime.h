@@ -2,8 +2,8 @@
 // Use of this source is governed by General Public License that can be found
 // in the LICENSE file.
 
-#ifndef SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_INFO_H_
-#define SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_INFO_H_
+#ifndef SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_H_
+#define SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_H_
 
 #include <QDebug>
 #include <QtGlobal>
@@ -11,18 +11,18 @@
 namespace sysinfo {
 namespace computer {
 
-struct UptimeInfo {
+struct Uptime {
   qint32 days{};
   qint32 hours{};
   qint32 minutes{};
   qint32 seconds{};
 };
 
-QDebug operator<<(QDebug stream, const UptimeInfo& info);
+QDebug operator<<(QDebug stream, const Uptime& info);
 
 }  // namespace computer
 }  // namespace sysinfo
 
-Q_DECLARE_METATYPE(sysinfo::computer::UptimeInfo)
+Q_DECLARE_METATYPE(sysinfo::computer::Uptime)
 
-#endif  // SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_INFO_H_
+#endif  // SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_H_

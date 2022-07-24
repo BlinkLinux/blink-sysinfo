@@ -4,18 +4,18 @@
 
 #include <gtest/gtest.h>
 
-#include "modules/computer/group.h"
+#include "modules/computer/boots.h"
 
 namespace sysinfo {
 namespace computer {
 
-TEST(GroupTest, TestGetGroupList) {
-  GroupList list;
-  const bool ok = getGroupList(list);
+TEST(BootupTest, TestGetBootup) {
+  BootupList list;
+  const bool ok = getBootup(list);
   ASSERT_TRUE(ok);
-  ASSERT_GT(list.length(), 5);
-  ASSERT_EQ(list.first().gid, 0);
-  ASSERT_EQ(list.first().members, QStringList("root"));
+  ASSERT_GT(list.length(), 1);
+  ASSERT_TRUE(list.at(0).start_time.isValid());
+  ASSERT_LT(list.at(0).start_time, QDateTime::currentDateTime());
 }
 
 }  // namespace computer
