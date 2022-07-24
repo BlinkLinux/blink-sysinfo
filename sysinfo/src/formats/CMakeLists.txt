@@ -2,6 +2,8 @@
 set(SOURCE_FILES
     computer/boots.cpp
     computer/boots.h
+    computer/development.cpp
+    computer/development.h
     computer/environment.h
     computer/groups.cpp
     computer/groups.h

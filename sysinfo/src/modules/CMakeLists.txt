@@ -2,6 +2,8 @@
 set(SOURCE_FILES
     computer/boots.cpp
     computer/boots.h
+    computer/development.cpp
+    computer/development.h
     computer/environment.cpp
     computer/environment.h
     computer/groups.cpp
@@ -20,6 +22,7 @@ set(SOURCE_FILES
 
 set(TEST_FILES
     computer/boots_test.cpp
+    computer/development_test.cpp
     computer/groups_test.cpp
     computer/languages_test.cpp
     computer/modules_test.cpp
