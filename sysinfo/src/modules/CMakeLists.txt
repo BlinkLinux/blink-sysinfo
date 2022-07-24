@@ -8,12 +8,15 @@ set(SOURCE_FILES
     computer/operation_system.h
     computer/uptime.cpp
     computer/uptime.h
+    computer/user.cpp
+    computer/user.h
     )
 
 set(TEST_FILES
     computer/bootup_test.cpp
     computer/operation_system_test.cpp
     computer/uptime_test.cpp
+    computer/user_test.cpp
     )
 
 add_library(sysinfo-modules STATIC

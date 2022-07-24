@@ -7,6 +7,8 @@ set(SOURCE_FILES
     computer/operation_system.h
     computer/uptime_info.cpp
     computer/uptime_info.h
+    computer/user.cpp
+    computer/user.h
     )
 
 add_library(sysinfo-formats STATIC
