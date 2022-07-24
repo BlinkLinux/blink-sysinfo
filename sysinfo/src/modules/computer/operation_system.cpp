@@ -92,7 +92,7 @@ QString detectDistro() {
   };
 
   QString contents;
-  if (getCommandOutput("lsb_release", {"-d",}, contents)) {
+  if (getCommandOutputWithArgs("lsb_release", {"-d",}, contents)) {
     constexpr const char description[] = "Description:\t";
     if (contents.startsWith(description)) {
       return contents.mid(static_cast<int>(strlen(description))).trimmed();

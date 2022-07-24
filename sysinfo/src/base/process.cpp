@@ -14,11 +14,6 @@ bool getCommandOutput(const QString& cmd, QString& output) {
   return getCommandOutput(cmd, output, err);
 }
 
-bool getCommandOutput(const QString& cmd, const QStringList& args, QString& output) {
-  QString err;
-  return getCommandOutput(cmd, args, output, err);
-}
-
 bool getCommandOutput(const QString& cmd, QString& output, QString& err) {
   QProcess process;
   process.setProgram("sh");
@@ -34,7 +29,12 @@ bool getCommandOutput(const QString& cmd, QString& output, QString& err) {
   return ok;
 }
 
-bool getCommandOutput(const QString& cmd, const QStringList& args, QString& output, QString& err) {
+bool getCommandOutputWithArgs(const QString& cmd, const QStringList& args, QString& output) {
+  QString err;
+  return getCommandOutputWithArgs(cmd, args, output, err);
+}
+
+bool getCommandOutputWithArgs(const QString& cmd, const QStringList& args, QString& output, QString& err) {
   QProcess process;
   process.setProgram(cmd);
   process.setArguments(args);

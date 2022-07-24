@@ -7,6 +7,8 @@ set(SOURCE_FILES
     computer/groups.h
     computer/languages.cpp
     computer/languages.h
+    computer/modules.cpp
+    computer/modules.h
     computer/operation_system.cpp
     computer/operation_system.h
     computer/uptime.cpp

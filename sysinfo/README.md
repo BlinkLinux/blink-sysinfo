@@ -7,3 +7,4 @@
 - Qt5
 - gtest
 - lsb-release
+- kmod
