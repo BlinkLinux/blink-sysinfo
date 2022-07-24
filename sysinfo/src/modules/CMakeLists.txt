@@ -4,6 +4,8 @@ set(SOURCE_FILES
     computer/boots.h
     computer/development.cpp
     computer/development.h
+    computer/display.cpp
+    computer/display.h
     computer/environment.cpp
     computer/environment.h
     computer/filesystem.cpp
@@ -25,6 +27,7 @@ set(SOURCE_FILES
 set(TEST_FILES
     computer/boots_test.cpp
     computer/development_test.cpp
+    computer/display_test.cpp
     computer/filesystem_test.cpp
     computer/groups_test.cpp
     computer/languages_test.cpp
@@ -39,6 +42,7 @@ add_library(sysinfo-modules STATIC
     )
 target_link_libraries(sysinfo-modules
     Qt5::Core
+    Qt5::Gui
 
     sysinfo-base
     sysinfo-formats

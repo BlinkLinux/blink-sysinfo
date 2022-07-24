@@ -1,7 +1,7 @@
 
 add_subdirectory(third_party)
 
-find_package(Qt5 5.12 COMPONENTS Core Network REQUIRED)
+find_package(Qt5 5.12 COMPONENTS Core Network Gui REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 

@@ -124,7 +124,7 @@ QString detectDistro() {
     return contents;
   }
 
-  return QObject::tr("Unknown");
+  return {};
 }
 
 QString getLanguage() {
@@ -154,7 +154,7 @@ QString getLanguageCodec() {
     return lc;
   }
 
-  return QObject::tr("Unknown");
+  return {};
 }
 
 QString getLibcVersion() {
@@ -200,7 +200,7 @@ QString getLibcVersion() {
     return lib.lib_name;
   }
 
-  return QObject::tr("Unknown");
+  return {};
 }
 
 QString detectKdeVersion() {
@@ -260,7 +260,7 @@ QString detectWindowManager() {
       return desk_session;
   }
 
-  return QObject::tr("Unknown (Window Manager: %1)").arg(wm);
+  return {};
 }
 
 QString desktopWithSessionType(const QString& desktop_env) {
@@ -333,7 +333,7 @@ QString detectDesktopEnvironment() {
     return QObject::tr("Terminal");
   }
 
-  return QObject::tr("Unknown");
+  return {};
 }
 
 QStringList getLoadAverage() {

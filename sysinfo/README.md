@@ -8,3 +8,4 @@
 - gtest
 - lsb-release
 - kmod
+- mesa-utils
