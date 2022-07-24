@@ -24,6 +24,9 @@ set(SOURCE_FILES
     computer/uptime.h
     computer/users.cpp
     computer/users.h
+
+    devices/memory.cpp
+    devices/memory.h
     )
 
 set(TEST_FILES
@@ -38,6 +41,8 @@ set(TEST_FILES
     computer/operation_system_test.cpp
     computer/uptime_test.cpp
     computer/users_test.cpp
+
+    devices/memory_test.cpp
     )
 
 add_library(sysinfo-modules STATIC

@@ -23,6 +23,8 @@ set(SOURCE_FILES
     computer/uptime.h
     computer/users.cpp
     computer/users.h
+
+    devices/memory.h
     )
 
 add_library(sysinfo-formats STATIC
