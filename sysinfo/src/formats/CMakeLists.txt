@@ -27,6 +27,8 @@ set(SOURCE_FILES
     devices/input_devices.cpp
     devices/input_devices.h
     devices/memory.h
+    devices/pci.cpp
+    devices/pci.h
     )
 
 add_library(sysinfo-formats STATIC

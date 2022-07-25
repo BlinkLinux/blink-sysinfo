@@ -29,6 +29,8 @@ set(SOURCE_FILES
     devices/input_devices.h
     devices/memory.cpp
     devices/memory.h
+    devices/pci.cpp
+    devices/pci.h
     )
 
 set(TEST_FILES
@@ -46,6 +48,7 @@ set(TEST_FILES
 
     devices/input_devices_test.cpp
     devices/memory_test.cpp
+    devices/pci_test.cpp
     )
 
 add_library(sysinfo-modules STATIC
