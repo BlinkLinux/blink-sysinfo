@@ -34,7 +34,8 @@ bool getBootup(BootupList& list) {
 
     Bootup bootup{};
     bootup.username = parts.at(0);
-    bootup.session_tty = parts.at(1);
+    QString session_tty = parts.at(1);
+    bootup.session_tty = session_tty.replace("system_boot", "system boot");
     bootup.kernel = parts.at(2);
     bootup.start_time = QDateTime::fromString(parts.at(3), Qt::ISODate);
     if (parts.at(4) == "still") {

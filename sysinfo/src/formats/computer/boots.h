@@ -6,6 +6,8 @@
 #define SYSINFO_SRC_FORMATS_COMPUTER_BOOTS_H_
 
 #include <QDateTime>
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -21,6 +23,10 @@ struct Bootup {
 };
 
 using BootupList = QVector<Bootup>;
+
+QJsonObject dump(const Bootup& bootup);
+
+QJsonArray dump(const BootupList& bootup_list);
 
 }  // namespace computer
 }  // namespace sysinfo

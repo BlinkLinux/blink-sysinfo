@@ -7,5 +7,23 @@
 namespace sysinfo {
 namespace computer {
 
+QJsonObject dump(const Bootup& bootup) {
+  QJsonObject obj;
+  obj.insert("username", bootup.username);
+  obj.insert("sessionTty", bootup.session_tty);
+  obj.insert("kernel", bootup.kernel);
+  obj.insert("startTime", bootup.start_time.toSecsSinceEpoch());
+  obj.insert("endTime", bootup.end_time.toSecsSinceEpoch());
+  return obj;
+}
+
+QJsonArray dump(const BootupList& bootup_list) {
+  QJsonArray array;
+  for (const auto& bootup : bootup_list) {
+    array.append(dump(bootup));
+  }
+  return array;
+}
+
 }  // namespace computer
 }  // namespace sysinfo

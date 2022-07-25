@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_COMPUTER_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_COMPUTER_H_
 
+#include <QJsonObject>
+
 #include "formats/computer/boots.h"
 #include "formats/computer/development.h"
 #include "formats/computer/display.h"
@@ -35,6 +37,10 @@ struct ComputerInfo {
   Uptime uptime{};
   UserList users{};
 };
+
+QJsonObject dump(const ComputerInfo& info);
+
+QByteArray dumpToJson(const ComputerInfo& info);
 
 }  // namespace computer
 }  // namespace sysinfo
