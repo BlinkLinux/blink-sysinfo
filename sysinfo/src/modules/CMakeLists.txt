@@ -2,6 +2,8 @@
 set(SOURCE_FILES
     computer/boots.cpp
     computer/boots.h
+    computer/computer.cpp
+    computer/computer.h
     computer/development.cpp
     computer/development.h
     computer/display.cpp
@@ -55,6 +57,7 @@ set(SOURCE_FILES
 
 set(TEST_FILES
     computer/boots_test.cpp
+    computer/computer_test.cpp
     computer/development_test.cpp
     computer/display_test.cpp
     computer/filesystem_test.cpp
