@@ -25,6 +25,8 @@ set(SOURCE_FILES
     computer/users.cpp
     computer/users.h
 
+    devices/dmi.cpp
+    devices/dmi.h
     devices/input_devices.cpp
     devices/input_devices.h
     devices/memory.cpp
@@ -51,6 +53,7 @@ set(TEST_FILES
     computer/uptime_test.cpp
     computer/users_test.cpp
 
+    devices/dmi_test.cpp
     devices/input_devices_test.cpp
     devices/memory_test.cpp
     devices/pci_test.cpp
