@@ -18,6 +18,8 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 # Generate compile_commands.json project file.
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+option(BUILD_TESTING "Enable unittests" OFF)
+
 if (BUILD_TESTING)
   enable_testing()
 endif ()
