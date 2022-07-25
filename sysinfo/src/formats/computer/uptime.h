@@ -5,8 +5,9 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_UPTIME_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QDebug>
-#include <QtGlobal>
 
 namespace sysinfo {
 namespace computer {
@@ -17,6 +18,8 @@ struct Uptime {
   qint32 minutes{};
   qint32 seconds{};
 };
+
+QJsonObject dump(const Uptime& uptime);
 
 QDebug operator<<(QDebug stream, const Uptime& info);
 
