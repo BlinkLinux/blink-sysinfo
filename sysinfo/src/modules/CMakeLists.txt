@@ -36,6 +36,8 @@ set(SOURCE_FILES
     devices/usb.cpp
     devices/usb.h
 
+    network/arp_table.cpp
+    network/arp_table.h
     network/dns_servers.cpp
     network/dns_servers.h
     network/ip_connections.cpp
@@ -64,6 +66,7 @@ set(TEST_FILES
     devices/pci_test.cpp
     devices/usb_test.cpp
 
+    network/arp_table_test.cpp
     network/dns_servers_test.cpp
     network/ip_connections_test.cpp
 

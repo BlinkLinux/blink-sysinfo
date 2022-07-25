@@ -34,6 +34,8 @@ set(SOURCE_FILES
     devices/usb.cpp
     devices/usb.h
 
+    network/arp_table.cpp
+    network/arp_table.h
     network/dns_servers.cpp
     network/dns_servers.h
     network/ip_connections.cpp
