@@ -25,6 +25,8 @@ set(SOURCE_FILES
     computer/users.cpp
     computer/users.h
 
+    devices/battery.cpp
+    devices/battery.h
     devices/dmi.cpp
     devices/dmi.h
     devices/input_devices.cpp
@@ -64,6 +66,7 @@ set(TEST_FILES
     computer/uptime_test.cpp
     computer/users_test.cpp
 
+    devices/battery_test.cpp
     devices/dmi_test.cpp
     devices/input_devices_test.cpp
     devices/memory_test.cpp
