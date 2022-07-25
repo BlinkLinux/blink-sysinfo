@@ -30,7 +30,7 @@ QString detectXdgEnvironment(const char* env_var);
 
 QString detectDesktopEnvironment();
 
-QStringList getLoadAverage();
+QVector<double> getLoadAverage();
 
 }  // namespace computer
 }  // namespace sysinfo

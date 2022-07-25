@@ -24,7 +24,7 @@ struct OperationSystem {
   QString real_user{};
   QString libc{};
   QString desktop{};
-  QStringList load_avg{};
+  QVector<double> load_avg{};
 };
 
 QJsonObject dump(const OperationSystem& os);

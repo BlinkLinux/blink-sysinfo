@@ -336,17 +336,17 @@ QString detectDesktopEnvironment() {
   return {};
 }
 
-QStringList getLoadAverage() {
+QVector<double> getLoadAverage() {
   QString content{};
   if (!readTextFile("/proc/loadavg", content)) {
     return {};
   }
 
-  QStringList parts = content.split(' ');
+  const QStringList parts = content.split(' ');
   if (parts.length() < 3) {
-    return parts;
+    return {};
   }
-  return { parts.at(0), parts.at(1), parts.at(2) };
+  return { parts.at(0).toDouble(), parts.at(1).toDouble(), parts.at(2).toDouble() };
 }
 
 }  // namespace computer

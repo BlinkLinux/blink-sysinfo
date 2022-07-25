@@ -22,7 +22,11 @@ QJsonObject dump(const OperationSystem& os) {
   obj.insert("realUser", os.real_user);
   obj.insert("libc", os.libc);
   obj.insert("desktop", os.desktop);
-  obj.insert("loadingAverage", QJsonArray::fromStringList(os.load_avg));
+  QJsonArray load_avg;
+  for (const auto value : os.load_avg) {
+    load_avg.append(value);
+  }
+  obj.insert("loadingAverage", load_avg);
   return obj;
 }
 
