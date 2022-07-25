@@ -9,3 +9,4 @@
 - lsb-release
 - kmod
 - mesa-utils
+- pciutils
