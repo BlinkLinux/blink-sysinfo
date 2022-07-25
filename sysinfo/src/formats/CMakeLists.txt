@@ -38,6 +38,8 @@ set(SOURCE_FILES
     network/arp_table.h
     network/dns_servers.cpp
     network/dns_servers.h
+    network/interfaces.cpp
+    network/interfaces.h
     network/ip_connections.cpp
     network/ip_connections.h
     network/routing_table.cpp
