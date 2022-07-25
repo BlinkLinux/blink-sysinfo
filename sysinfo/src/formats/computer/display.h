@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_DISPLAY_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_DISPLAY_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QStringList>
 #include <QVector>
@@ -34,15 +36,21 @@ struct Display {
   QString vendor{};
   QString version{};
   QString xorg_version{};
-  QString display_name{};
-  QString current_display_monitor{};
+  QString name{};
+  // TODO(Shaohua): Convert to qint32.
+  QString current_monitor{};
 
+  // TODO(Shaohua): Remove this field.
   qint32 default_screen_number{};
   QVector<Monitor> monitors{};
   QStringList x11_extensions{};
 
   OpenGlInfo opengl{};
 };
+
+QJsonObject dump(const OpenGlInfo& info);
+QJsonObject dump(const Monitor& monitor);
+QJsonObject dump(const Display& display);
 
 }  // namespace computer
 }  // namespace sysinfo

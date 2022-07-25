@@ -79,7 +79,7 @@ bool getX11Info(Display& display) {
       const QString value = line.mid(semi_index + 1);
 
       if (key == "name of display") {
-        display.display_name = value;
+        display.name = value;
       } else if (key == "version number") {
         display.version = value;
 
