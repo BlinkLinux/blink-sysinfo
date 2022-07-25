@@ -14,6 +14,7 @@ QJsonObject dump(const ComputerInfo& info) {
   obj.insert("bootup", dump(info.bootup_list));
   obj.insert("development", dump(info.development));
   obj.insert("display", dump(info.display));
+  obj.insert("environment", QJsonArray::fromStringList(info.environment));
   return obj;
 }
 
