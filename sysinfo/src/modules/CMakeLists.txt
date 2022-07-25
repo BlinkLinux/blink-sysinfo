@@ -36,6 +36,9 @@ set(SOURCE_FILES
     devices/usb.cpp
     devices/usb.h
 
+    network/dns_servers.cpp
+    network/dns_servers.h
+
     shared/vendor.cpp
     shared/vendor.h
     )
@@ -58,6 +61,8 @@ set(TEST_FILES
     devices/memory_test.cpp
     devices/pci_test.cpp
     devices/usb_test.cpp
+
+    network/dns_servers_test.cpp
 
     shared/vendor_test.cpp
     )

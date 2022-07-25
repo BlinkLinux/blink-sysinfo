@@ -33,6 +33,9 @@ set(SOURCE_FILES
     devices/pci.h
     devices/usb.cpp
     devices/usb.h
+
+    network/dns_servers.cpp
+    network/dns_servers.h
     )
 
 add_library(sysinfo-formats STATIC
