@@ -10,3 +10,4 @@
 - kmod
 - mesa-utils
 - pciutils
+- usbutils

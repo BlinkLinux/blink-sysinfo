@@ -31,6 +31,8 @@ set(SOURCE_FILES
     devices/memory.h
     devices/pci.cpp
     devices/pci.h
+    devices/usb.cpp
+    devices/usb.h
 
     shared/vendor.cpp
     shared/vendor.h
@@ -52,6 +54,7 @@ set(TEST_FILES
     devices/input_devices_test.cpp
     devices/memory_test.cpp
     devices/pci_test.cpp
+    devices/usb_test.cpp
 
     shared/vendor_test.cpp
     )
