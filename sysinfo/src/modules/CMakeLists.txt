@@ -38,6 +38,8 @@ set(SOURCE_FILES
 
     network/dns_servers.cpp
     network/dns_servers.h
+    network/ip_connections.cpp
+    network/ip_connections.h
 
     shared/vendor.cpp
     shared/vendor.h
@@ -63,6 +65,7 @@ set(TEST_FILES
     devices/usb_test.cpp
 
     network/dns_servers_test.cpp
+    network/ip_connections_test.cpp
 
     shared/vendor_test.cpp
     )

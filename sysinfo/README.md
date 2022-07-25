@@ -11,3 +11,4 @@
 - mesa-utils
 - pciutils
 - usbutils
+- netstat-nat

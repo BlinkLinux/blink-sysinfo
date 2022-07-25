@@ -36,6 +36,8 @@ set(SOURCE_FILES
 
     network/dns_servers.cpp
     network/dns_servers.h
+    network/ip_connections.cpp
+    network/ip_connections.h
     )
 
 add_library(sysinfo-formats STATIC
