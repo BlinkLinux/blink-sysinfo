@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_USERS_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_USERS_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -21,6 +23,9 @@ struct User {
 };
 
 using UserList = QVector<User>;
+
+QJsonObject dump(const User& user);
+QJsonArray dump(const UserList& list);
 
 }  // namespace computer
 }  // namespace sysinfo
