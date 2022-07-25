@@ -31,6 +31,11 @@ struct PciDev {
   QString name{};
   QString subsystem{};
 
+  QString vendor_name{};
+  QString vendor_url{};
+  QString oem_vendor_name{};
+  QString oem_vendor_url{};
+
   PciDevIoPorts io_ports{};
   QStringList kernel_modules{};
   QVector<PciDevMemory> memories{};

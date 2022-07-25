@@ -10,6 +10,7 @@
 
 #include "base/process.h"
 #include "base/unit.h"
+#include "modules/shared/vendor.h"
 
 namespace sysinfo {
 namespace devices {
@@ -42,6 +43,8 @@ bool getPciDevList(PciDevList& list) {
         dev.id = match.captured(1);
         dev.dev_class = match.captured(2);
         dev.name = match.captured(3);
+        dev.vendor_name = getVendorName(dev.name);
+        dev.vendor_url = getVendorUrl(dev.name);
       }
       continue;
     }
@@ -49,6 +52,8 @@ bool getPciDevList(PciDevList& list) {
     line = line.trimmed();
     if (line.startsWith("Subsystem:")) {
       dev.subsystem = line.mid(static_cast<int>(strlen("Subsystem:"))).trimmed();
+      dev.oem_vendor_name = getVendorName(dev.subsystem);
+      dev.oem_vendor_url = getVendorUrl(dev.subsystem);
     } else if (line.startsWith("Flags:")) {
       dev.is_bus_master = line.contains("bus master");
       const auto match = flags_pattern.match(line);
