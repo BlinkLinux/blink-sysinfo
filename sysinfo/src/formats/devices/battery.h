@@ -13,12 +13,12 @@ namespace devices {
 
 struct Battery {
   QString status{};
+  qint32 capacity{};
   QString capacity_level{};
   QString technology{};
   QString manufacturer{};
   QString model_name{};
   QString serial_number{};
-  qint32 capacity{};
 };
 
 using BatteryList = QVector<Battery>;
