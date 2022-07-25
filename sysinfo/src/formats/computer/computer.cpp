@@ -12,6 +12,7 @@ namespace computer {
 QJsonObject dump(const ComputerInfo& info) {
   QJsonObject obj;
   obj.insert("bootup", dump(info.bootup_list));
+  obj.insert("development", dump(info.development));
   return obj;
 }
 

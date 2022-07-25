@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_DEVELOPMENT_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_DEVELOPMENT_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -24,6 +26,10 @@ struct Development {
   DevItems compilers{};
   DevItems tools{};
 };
+
+QJsonObject dump(const DevItem& dev_item);
+QJsonArray dump(const DevItems& dev_items);
+QJsonObject dump(const Development& development);
 
 }  // namespace computer
 }  // namespace sysinfo

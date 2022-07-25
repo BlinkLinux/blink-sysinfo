@@ -4,6 +4,8 @@
 
 #include "controllers/shell.h"
 
+#include <unistd.h>
+
 #include <QCoreApplication>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -15,6 +17,11 @@
 
 namespace sysinfo {
 namespace {
+
+void writeToStdout(const QByteArray& bytes) {
+  const std::string s = bytes.toStdString();
+  write(STDOUT_FILENO, s.c_str(), s.size());
+}
 
 void readCommandLine() {
   QCommandLineParser parser;
@@ -33,7 +40,7 @@ void readCommandLine() {
     computer::ComputerInfo info;
     const bool ok = computer::getComputerInfo(info);
     const QByteArray bytes = computer::dumpToJson(info);
-    printf("%s", bytes.toStdString().c_str());
+    writeToStdout(bytes);
     return;
   }
   if (parser.isSet(devices_opt)) {
