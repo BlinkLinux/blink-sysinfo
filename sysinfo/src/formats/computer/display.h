@@ -7,6 +7,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 namespace sysinfo {
 namespace computer {
