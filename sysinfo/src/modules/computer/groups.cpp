@@ -44,7 +44,7 @@ bool getGroupList(GroupList& list) {
   }
   for (auto& group : list) {
     for (const auto& user : user_list) {
-      if (user.gid == group.gid) {
+      if (user.gid == group.gid && !group.members.contains(user.name)) {
         group.members.append(user.name);
       }
     }
