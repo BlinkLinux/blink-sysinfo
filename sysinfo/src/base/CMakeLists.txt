@@ -4,10 +4,13 @@ set(SOURCE_FILES
     file.h
     process.cpp
     process.h
+    string.cpp
+    string.h
     unit.cpp
     unit.h
     )
 set(TEST_FILES
+    string_test.cpp
     unit_test.cpp
     )
 
