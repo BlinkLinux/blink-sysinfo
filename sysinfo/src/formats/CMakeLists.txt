@@ -40,6 +40,8 @@ set(SOURCE_FILES
     network/dns_servers.h
     network/ip_connections.cpp
     network/ip_connections.h
+    network/routing_table.cpp
+    network/routing_table.h
     )
 
 add_library(sysinfo-formats STATIC

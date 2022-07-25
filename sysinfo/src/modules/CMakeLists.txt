@@ -42,6 +42,8 @@ set(SOURCE_FILES
     network/dns_servers.h
     network/ip_connections.cpp
     network/ip_connections.h
+    network/routing_table.cpp
+    network/routing_table.h
 
     shared/vendor.cpp
     shared/vendor.h
@@ -69,6 +71,7 @@ set(TEST_FILES
     network/arp_table_test.cpp
     network/dns_servers_test.cpp
     network/ip_connections_test.cpp
+    network/routing_table_test.cpp
 
     shared/vendor_test.cpp
     )

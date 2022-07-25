@@ -34,7 +34,7 @@ bool getArpList(ArpList& list) {
     list.append(Arp {
       .ip = parts.at(0),
       .mac = parts.at(3),
-      .device = parts.at(4),
+      .interface = parts.at(4),
       .hw_type = parts.at(1).toInt(nullptr, 16),
       .flags = parts.at(2).toInt(nullptr, 16),
     });
