@@ -6,6 +6,7 @@
 #define SYSINFO_SRC_BASE_FILE_H_
 
 #include <QString>
+#include <QTextStream>
 
 namespace sysinfo {
 
@@ -17,6 +18,7 @@ bool readTextFile(const QString& path, QString& content);
 
 bool writeBinaryFile(const QString& path, const QByteArray& bytes);
 
+bool readFileAsStream(const QString& path, QTextStream& stream);
 
 }  // namespace sysinfo
 

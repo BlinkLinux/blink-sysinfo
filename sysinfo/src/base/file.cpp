@@ -65,4 +65,13 @@ bool writeBinaryFile(const QString& path, const QByteArray& bytes) {
   return true;
 }
 
+bool readFileAsStream(const QString& path, QTextStream& stream) {
+  auto* file = new QFile(path);
+  if (!file->open(QIODevice::ReadOnly)) {
+    return false;
+  }
+  stream.setDevice(file);
+  return true;
+}
+
 }  // namespace sysinfo

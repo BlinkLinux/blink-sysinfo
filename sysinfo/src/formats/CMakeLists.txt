@@ -24,6 +24,8 @@ set(SOURCE_FILES
     computer/users.cpp
     computer/users.h
 
+    devices/input_devices.cpp
+    devices/input_devices.h
     devices/memory.h
     )
 
