@@ -4,6 +4,7 @@
 
 #include "base/unit.h"
 
+#include <QDebug>
 #include <QRegularExpression>
 
 namespace sysinfo {
@@ -17,7 +18,12 @@ qint64 parseMemSize(const QString& s) {
       size = 10 * size + (c - '0');
       continue;
     }
+
     switch (c) {
+      case ' ':  // fall through
+      case '\t': {
+        continue;
+      }
       case 'k': {
         size *= (1 << 10);
         break;
@@ -35,7 +41,8 @@ qint64 parseMemSize(const QString& s) {
         break;
       }
       default: {
-        break;
+        qWarning() << "Invalid char in:" << s;
+        return 0;
       }
     }
   }

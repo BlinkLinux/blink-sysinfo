@@ -12,8 +12,6 @@ namespace computer {
 
 bool getMemoryInfo(Memory& memory);
 
-qint64 getMemoryValue(const QString& value);
-
 }  // namespace computer
 }  // namespace sysinfo
 

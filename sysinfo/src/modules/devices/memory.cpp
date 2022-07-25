@@ -8,7 +8,7 @@
 #include <QTextStream>
 
 #include "base/file.h"
-#include "modules/computer/memory.h"
+#include "base/unit.h"
 
 namespace sysinfo {
 namespace devices {
@@ -26,7 +26,7 @@ bool getMemoryInfo(MemoryInfos& map) {
     if (parts.length() != 2) {
       continue;
     }
-    const qint64 value = computer::getMemoryValue(parts.at(1));
+    const qint64 value = parseMemSize(parts.at(1));
     map.insert(parts.at(0), value);
   }
 

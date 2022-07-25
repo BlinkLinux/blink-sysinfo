@@ -4,9 +4,11 @@
 
 #include "modules/computer/memory.h"
 
+#include <QDebug>
 #include <QTextStream>
 
 #include "base/file.h"
+#include "base/unit.h"
 
 namespace sysinfo {
 namespace computer {
@@ -24,26 +26,15 @@ bool getMemoryInfo(Memory& memory) {
     const QString& key = parts.at(0);
     const QString& value = parts.at(1);
     if (key == "MemTotal") {
-      memory.total = getMemoryValue(value);
+      memory.total = parseMemSize(value);
     } else if (key == "MemFree") {
-      memory.free = getMemoryValue(value);
+      memory.free = parseMemSize(value);
     } else if (key == "Cached") {
-      memory.cached = getMemoryValue(value);
+      memory.cached = parseMemSize(value);
     }
   }
 
   return true;
-}
-
-qint64 getMemoryValue(const QString& value) {
-  const QStringList parts = value.trimmed().split(' ');
-  if (parts.length() == 1) {
-    return parts.first().toLong();
-  }
-  if (parts.length() == 2 && parts.last() == "kB") {
-    return parts.first().toLong() * 1024;
-  }
-  return 0;
 }
 
 }  // namespace computer
