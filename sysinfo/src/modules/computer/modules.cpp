@@ -63,8 +63,6 @@ bool getModuleDetail(Module& module) {
       module.description = value;
     } else if (name == "author") {
       module.author = value;
-    } else if (name == "alias") {
-      module.alias_list.append(value);
     } else if (name == "depends") {
       module.dependencies = value.split(',');
     } else if (name == "vermagic") {

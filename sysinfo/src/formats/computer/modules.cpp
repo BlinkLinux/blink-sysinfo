@@ -12,7 +12,6 @@ QJsonObject dump(const Module& module) {
   obj.insert("name", module.name);
   obj.insert("description", module.description);
   obj.insert("versionMagic", module.version_magic);
-  obj.insert("aliases", QJsonArray::fromStringList(module.alias_list));
   obj.insert("path", module.path);
   obj.insert("memory", module.memory_bytes);
   obj.insert("dependencies", QJsonArray::fromStringList(module.dependencies));

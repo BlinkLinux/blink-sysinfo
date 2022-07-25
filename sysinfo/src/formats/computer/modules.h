@@ -18,7 +18,6 @@ struct Module {
   QString name{};
   QString description{};
   QString version_magic{};
-  QStringList alias_list{};
 
   QString path{};
   qint32 memory_bytes{};
