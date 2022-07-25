@@ -14,6 +14,8 @@ bool getNetworkInterfaces(NetworkInterfaceList& list);
 
 bool getNetInfo(NetworkInterface& iface);
 
+NetworkInterfaceType getIfaceType(const QString& name);
+
 }  // namespace network
 }  // namespace sysinfo
 

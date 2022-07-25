@@ -16,5 +16,12 @@ TEST(InterfacesTest, TestGetIfaceList) {
   ASSERT_GT(list.length(), 3);
 }
 
+TEST(InterfacesTest, TestGetIfaceType) {
+  ASSERT_EQ(getIfaceType("enp2s0"), NetworkInterfaceType::Ethernet);
+  ASSERT_EQ(getIfaceType("wlp3s0"), NetworkInterfaceType::Wireless);
+  ASSERT_EQ(getIfaceType("docker0"), NetworkInterfaceType::Bridge);
+  ASSERT_EQ(getIfaceType("veth7f9c13"), NetworkInterfaceType::VirtualNetwork);
+}
+
 }  // namespace network
 }  // namespace sysinfo

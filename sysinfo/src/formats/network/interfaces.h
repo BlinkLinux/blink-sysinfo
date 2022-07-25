@@ -16,7 +16,11 @@ enum class NetworkInterfaceType : quint8 {
   Loopback = 1,
   Ethernet = 2,
   Wireless = 3,
-  Bridget = 4,
+  Bridge = 4,
+  PointToPoint = 5,
+  Bluetooth = 6,
+  VirtualNetwork = 7,
+  Mesh = 8,
 };
 
 struct NetworkInterface {
@@ -29,6 +33,7 @@ struct NetworkInterface {
   qint32 mtu{};
   qint64 sent{};
   qint64 received{};
+  NetworkInterfaceType type{};
 };
 
 using NetworkInterfaceList = QVector<NetworkInterface>;

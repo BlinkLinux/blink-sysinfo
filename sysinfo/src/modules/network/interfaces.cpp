@@ -48,6 +48,7 @@ bool getNetworkInterfaces(NetworkInterfaceList& list) {
     iface.interface = parts.at(0).trimmed().remove(':');
     iface.received = parts.at(1).toLong();
     iface.sent = parts.at(2).toLong();
+    iface.type = getIfaceType(iface.interface);
     if (getNetInfo(iface)) {
       list.append(iface);
     }
@@ -102,6 +103,70 @@ bool getNetInfo(NetworkInterface& iface) {
   close(fd);
 
   return true;
+}
+
+NetworkInterfaceType getIfaceType(const QString& name) {
+  struct NamePair {
+    const char* prefix{};
+    NetworkInterfaceType type{};
+  };
+
+//  { "plip", NC_("net-if-type", "Parallel Line Internet Protocol"), "network" },
+//  { "irlan", NC_("net-if-type", "Infrared"), "network" },
+//  { "slip", NC_("net-if-type", "Serial Line Internet Protocol"), "network" },
+//  { "isdn", NC_("net-if-type", "Integrated Services Digital Network"), "modem" },
+//  { "sit", NC_("net-if-type", "IPv6-over-IPv4 Tunnel"), "network" },
+//  { "pan", NC_("net-if-type", "Personal Area Network (PAN)"), "bluetooth" },
+//  { "ifb", NC_("net-if-type", "Intermediate Functional Block"), "network" },
+//  { "gre", NC_("net-if-type", "GRE Network Tunnel"), "network" },
+//  { "sl", NC_("net-if-type", "Serial Line Internet Protocol"), "network" },
+
+  constexpr const NamePair kEthNames[] = {
+      // ethernet
+      {"eth", NetworkInterfaceType::Ethernet},
+      {"tap", NetworkInterfaceType::Ethernet},
+      {"en", NetworkInterfaceType::Ethernet},
+      {"net", NetworkInterfaceType::Ethernet},
+
+      {"lo", NetworkInterfaceType::Loopback},
+
+      // wireless
+      {"ath", NetworkInterfaceType::Wireless},
+      {"wlan", NetworkInterfaceType::Wireless},
+      {"ra", NetworkInterfaceType::Wireless},
+      {"wmaster", NetworkInterfaceType::Wireless},
+      {"wl", NetworkInterfaceType::Wireless},
+      {"ww", NetworkInterfaceType::Wireless},
+
+      // bridget
+      {"br", NetworkInterfaceType::Bridge},
+      {"docker", NetworkInterfaceType::Bridge},
+
+      // p2p
+      {"ppp", NetworkInterfaceType::PointToPoint},
+      {"tun", NetworkInterfaceType::PointToPoint},
+
+      // bluetooth
+      {"bnep", NetworkInterfaceType::Bluetooth},
+
+      // virtual
+      {"vmnet8", NetworkInterfaceType::VirtualNetwork},
+      {"vmnet", NetworkInterfaceType::VirtualNetwork},
+      {"vboxnet", NetworkInterfaceType::VirtualNetwork},
+      {"ham", NetworkInterfaceType::VirtualNetwork},
+      {"veth", NetworkInterfaceType::VirtualNetwork},
+
+      // mesh
+      {"msh", NetworkInterfaceType::Mesh},
+  };
+
+  for (const auto& item: kEthNames) {
+    if (name.startsWith(item.prefix)) {
+      return item.type;
+    }
+  }
+
+  return NetworkInterfaceType::Unknown;
 }
 
 }  // namespace network
