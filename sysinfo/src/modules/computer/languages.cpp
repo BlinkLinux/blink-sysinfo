@@ -20,13 +20,13 @@ bool getLanguageList(LanguageList& list) {
 
   QString line;
   QTextStream stream(&out);
-  LocaleInfo info{};
+  LanguageInfo info{};
   while (stream.readLineInto(&line)) {
     if (line.isEmpty()) {
       // Next line is a new record.
       list.append(info);
       // Reset last record.
-      info = LocaleInfo{};
+      info = LanguageInfo{};
       continue;
     }
 
@@ -66,7 +66,7 @@ bool getLanguageList(LanguageList& list) {
     } else if (name == "date") {
       info.date = value;
     } else if (name == "codeset") {
-      info.codeset = value;
+      info.code_set = value;
     }
   }
   list.append(info);

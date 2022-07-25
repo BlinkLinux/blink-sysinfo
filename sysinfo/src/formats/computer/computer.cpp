@@ -17,6 +17,7 @@ QJsonObject dump(const ComputerInfo& info) {
   obj.insert("environment", QJsonArray::fromStringList(info.environment));
   obj.insert("filesystems", dump(info.fs_list));
   obj.insert("groups", dump(info.groups));
+  obj.insert("languages", dump(info.language_list));
   return obj;
 }
 

@@ -5,13 +5,15 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_LANGUAGES_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_LANGUAGES_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
 namespace sysinfo {
 namespace computer {
 
-struct LocaleInfo {
+struct LanguageInfo {
   QString locale{};
   QString title{};
   QString source{};
@@ -21,10 +23,13 @@ struct LocaleInfo {
   QString territory{};
   QString revision{};
   QString date{};
-  QString codeset{};
+  QString code_set{};
 };
 
-using LanguageList = QVector<LocaleInfo>;
+using LanguageList = QVector<LanguageInfo>;
+
+QJsonObject dump(const LanguageInfo& info);
+QJsonArray dump(const LanguageList& list);
 
 }  // namespace computer
 }  // namespace sysinfo
