@@ -5,6 +5,7 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_MEMORY_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_MEMORY_H_
 
+#include <QJsonObject>
 #include <QtGlobal>
 
 namespace sysinfo {
@@ -15,6 +16,8 @@ struct Memory {
   qint64 free{};
   qint64 cached{};
 };
+
+QJsonObject dump(const Memory& memory);
 
 }  // namespace computer
 }  // namespace sysinfo
