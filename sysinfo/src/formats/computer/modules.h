@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_MODULES_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_MODULES_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QStringList>
 #include <QVector>
@@ -31,6 +33,9 @@ struct Module {
 };
 
 using ModuleList = QVector<Module>;
+
+QJsonObject dump(const Module& module);
+QJsonArray dump(const ModuleList& list);
 
 }  // namespace computer
 }  // namespace sysinfo
