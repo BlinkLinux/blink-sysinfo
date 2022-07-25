@@ -1,7 +1,5 @@
 
 set(SOURCE_FILES
-    main_controller.cpp
-    main_controller.h
     shell.cpp
     shell.h
     )
