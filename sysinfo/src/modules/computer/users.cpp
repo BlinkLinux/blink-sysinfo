@@ -16,9 +16,11 @@ bool getUserList(UserList& list) {
   }
 
   while (pw != nullptr) {
+    QString display_name = pw->pw_gecos;
+
     list.append(User{
         .name = pw->pw_name,
-        .display_name = pw->pw_gecos,
+        .display_name = display_name.remove(','),
         .uid = static_cast<qint32>(pw->pw_uid),
         .gid = static_cast<qint32>(pw->pw_gid),
         .home = pw->pw_dir,
