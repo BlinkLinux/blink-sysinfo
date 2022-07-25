@@ -34,7 +34,7 @@ bool getOperationSystem(OperationSystem& os) {
   os.hostname = name.nodename;
   os.language = getLanguage();
   os.lang_codec = getLanguageCodec();
-  os.homedir = QDir::homePath();
+  os.home = QDir::homePath();
   {
     struct passwd* pwd = getpwuid(getuid());
     if (pwd != nullptr) {

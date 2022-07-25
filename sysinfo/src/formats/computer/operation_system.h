@@ -5,6 +5,7 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_OPERATION_SYSTEM_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_OPERATION_SYSTEM_H_
 
+#include <QJsonObject>
 #include <QString>
 #include <QStringList>
 
@@ -18,13 +19,15 @@ struct OperationSystem {
   QString hostname{};
   QString language{};
   QString lang_codec{};
-  QString homedir{};
+  QString home{};
   QString username{};
   QString real_user{};
   QString libc{};
   QString desktop{};
   QStringList load_avg{};
 };
+
+QJsonObject dump(const OperationSystem& os);
 
 }  // namespace computer
 }  // namespace sysinfo

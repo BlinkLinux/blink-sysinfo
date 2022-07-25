@@ -4,8 +4,27 @@
 
 #include "formats/computer/operation_system.h"
 
+#include <QJsonArray>
+
 namespace sysinfo {
 namespace computer {
+
+QJsonObject dump(const OperationSystem& os) {
+  QJsonObject obj;
+  obj.insert("distro", os.distro);
+  obj.insert("kernelVersion", os.kernel_version);
+  obj.insert("kernel", os.kernel);
+  obj.insert("hostname", os.hostname);
+  obj.insert("language", os.language);
+  obj.insert("langCodec", os.lang_codec);
+  obj.insert("home", os.home);
+  obj.insert("username", os.username);
+  obj.insert("realUser", os.real_user);
+  obj.insert("libc", os.libc);
+  obj.insert("desktop", os.desktop);
+  obj.insert("loadingAverage", QJsonArray::fromStringList(os.load_avg));
+  return obj;
+}
 
 }  // namespace computer
 }  // namespace sysinfo
