@@ -13,6 +13,7 @@ TEST(BatteryTest, TestScanBatteryItemSysfs) {
   Battery battery;
   const bool ok = scanBatteryItemSysfs("/sys/class/power_supply/BAT0", battery);
   ASSERT_TRUE(ok);
+  ASSERT_GT(battery.capacity, 10);
 }
 
 }  // namespace devices

@@ -50,7 +50,7 @@ bool scanBatteryItemSysfs(const QString& dir_name, Battery& battery) {
   battery.manufacturer = readTextFile(dir.filePath("manufacturer")).trimmed();
   battery.model_name = readTextFile(dir.filePath("model_name")).trimmed();
   battery.status = readTextFile(dir.filePath("status")).trimmed();
-  battery.capacity = readTextFile(dir.filePath("capacity")).trimmed();
+  battery.capacity = readTextFile(dir.filePath("capacity")).trimmed().toInt();
   battery.capacity_level = readTextFile(dir.filePath("capacity_level")).trimmed();
 
   return true;

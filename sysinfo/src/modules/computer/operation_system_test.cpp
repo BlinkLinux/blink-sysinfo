@@ -3,7 +3,6 @@
 // that can be found in the LICENSE file.
 
 #include <gtest/gtest.h>
-#include <QDebug>
 
 #include "modules/computer/operation_system.h"
 
@@ -23,7 +22,6 @@ TEST(OsTest, TestGetLanguage) {
 TEST(OsTest, TestGetLanguageCodec) {
   const QString lang_codec = getLanguageCodec();
   ASSERT_FALSE(lang_codec.isEmpty());
-  qDebug() << "lang_codec:" << lang_codec;
   ASSERT_TRUE(lang_codec.contains("UTF-8"));
 }
 
@@ -35,13 +33,11 @@ TEST(OsTest, TestGetLibc) {
 
 TEST(OsTest, TestDesktopEnvironment) {
   const QString desktop = detectDesktopEnvironment();
-  qDebug() << "desktop:" << desktop;
   ASSERT_FALSE(desktop.isEmpty());
 }
 
 TEST(OsTest, TestLoadAverage) {
   const auto& list = getLoadAverage();
-  qDebug() << "load avg:" << list;
   ASSERT_EQ(list.length(), 3);
 }
 
