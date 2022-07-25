@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_COMPUTER_GROUPS_H_
 #define SYSINFO_SRC_FORMATS_COMPUTER_GROUPS_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QStringList>
 #include <QVector>
@@ -19,6 +21,9 @@ struct Group {
 };
 
 using GroupList = QVector<Group>;
+
+QJsonObject dump(const Group& group);
+QJsonArray dump(const GroupList& groups);
 
 }  // namespace computer
 }  // namespace sysinfo
