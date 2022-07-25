@@ -9,6 +9,7 @@
 #include <QCoreApplication>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
+#include <QJsonDocument>
 #include <Logger.h>
 #include <ConsoleAppender.h>
 
@@ -17,6 +18,12 @@
 
 namespace sysinfo {
 namespace {
+
+QByteArray dumpToJson(const QJsonObject& object) {
+  QJsonDocument doc;
+  doc.setObject(object);
+  return doc.toJson();
+}
 
 void writeToStdout(const QByteArray& bytes) {
   const std::string s = bytes.toStdString();
@@ -38,8 +45,8 @@ void readCommandLine() {
 
   if (parser.isSet(computer_opt)) {
     computer::ComputerInfo info;
-    const bool ok = computer::getComputerInfo(info);
-    const QByteArray bytes = computer::dumpToJson(info);
+    computer::getComputerInfo(info);
+    const QByteArray bytes = dumpToJson(dump(info));
     writeToStdout(bytes);
     return;
   }

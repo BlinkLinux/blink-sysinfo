@@ -40,8 +40,6 @@ struct ComputerInfo {
 
 QJsonObject dump(const ComputerInfo& info);
 
-QByteArray dumpToJson(const ComputerInfo& info);
-
 }  // namespace computer
 }  // namespace sysinfo
 
