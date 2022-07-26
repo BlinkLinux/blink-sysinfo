@@ -49,6 +49,8 @@ set(SOURCE_FILES
     network/interfaces.h
     network/ip_connections.cpp
     network/ip_connections.h
+    network/network.cpp
+    network/network.h
     network/routing_table.cpp
     network/routing_table.h
     )
