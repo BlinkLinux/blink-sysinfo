@@ -22,15 +22,15 @@ namespace computer {
 
 bool getComputerInfo(ComputerInfo& info) {
   bool ok = getBootup(info.bootup_list);
-  ok &= getDevelopmentEnv(info.development);
+  ok &= getDevelopmentEnv(info.development);  // 0.2s
   ok &= getDisplayInfo(info.display);
   info.environment = getEnvironment();
   ok &= getFilesystems(info.fs_list);
   ok &= getGroupList(info.groups);
   ok &= getLanguageList(info.language_list);
   ok &= getMemoryInfo(info.memory);
-  ok &= getKernelModules(info.module_list);
-  ok &= getOperationSystem(info.os);
+  ok &= getKernelModules(info.module_list);  // 0.6s
+  ok &= getOperationSystem(info.os);  // 1.9s
   ok &= getUptime(info.uptime);
   ok &= getUserList(info.users);
   return ok;

@@ -21,8 +21,6 @@ namespace sysinfo {
 namespace computer {
 
 bool getOperationSystem(OperationSystem& os) {
-  os.distro = detectDistro();
-
   utsname name{};
   if (uname(&name) == -1) {
     qWarning() << "uname() returns error:" << strerror(errno);
@@ -92,7 +90,8 @@ QString detectDistro() {
   };
 
   QString contents;
-  if (getCommandOutputWithArgs("lsb_release", {"-d",}, contents)) {
+  // NOTE(Shaohua): lsb_release runs really slow.
+  if (getCommandOutputWithArgs("lsb_release", {"-d", }, contents)) {
     constexpr const char description[] = "Description:\t";
     if (contents.startsWith(description)) {
       return contents.mid(static_cast<int>(strlen(description))).trimmed();
@@ -165,17 +164,17 @@ QString getLibcVersion() {
     bool try_ver_str;
     bool use_stderr;
   } libs[] = {
-      { "ldd --version", "GLIBC", "GNU C Library", true, false},
-      { "ldd --version", "GNU libc", "GNU C Library", true, false},
-      { "ldconfig -V", "GLIBC", "GNU C Library", true, false},
-      { "ldconfig -V", "GNU libc", "GNU C Library", true, false},
-      { "ldconfig -v", "uClibc", "uClibc or uClibc-ng", false, false},
-      { "diet", "diet version", "diet libc", true, true},
+      {"ldd --version", "GLIBC", "GNU C Library", true, false},
+      {"ldd --version", "GNU libc", "GNU C Library", true, false},
+      {"ldconfig -V", "GLIBC", "GNU C Library", true, false},
+      {"ldconfig -V", "GNU libc", "GNU C Library", true, false},
+      {"ldconfig -v", "uClibc", "uClibc or uClibc-ng", false, false},
+      {"diet", "diet version", "diet libc", true, true},
   };
 
   QString out;
   QString err;
-  for (const auto& lib : libs) {
+  for (const auto& lib: libs) {
     const bool ok = getCommandOutput(lib.test_cmd, out, err);
     if (!ok) {
       continue;
@@ -204,7 +203,7 @@ QString getLibcVersion() {
 }
 
 QString detectKdeVersion() {
-  const char *tmp = getenv("KDE_SESSION_VERSION");
+  const char* tmp = getenv("KDE_SESSION_VERSION");
   QString cmd;
   if (tmp && tmp[0] == '4') {
     cmd = "kwin --version";
@@ -256,8 +255,9 @@ QString detectWindowManager() {
   if (!curr_desktop.isEmpty()) {
     QString desk_session = qEnvironmentVariable("DESKTOP_SESSION");
 
-    if (!desk_session.isEmpty() && curr_desktop != desk_session)
+    if (!desk_session.isEmpty() && curr_desktop != desk_session) {
       return desk_session;
+    }
   }
 
   return {};
@@ -295,7 +295,6 @@ QString detectXdgEnvironment(const char* env_var) {
 
   return value;
 }
-
 
 QString detectDesktopEnvironment() {
   QString wm = detectXdgEnvironment("XDG_CURRENT_DESKTOP");
@@ -346,7 +345,7 @@ QVector<double> getLoadAverage() {
   if (parts.length() < 3) {
     return {};
   }
-  return { parts.at(0).toDouble(), parts.at(1).toDouble(), parts.at(2).toDouble() };
+  return {parts.at(0).toDouble(), parts.at(1).toDouble(), parts.at(2).toDouble()};
 }
 
 }  // namespace computer
