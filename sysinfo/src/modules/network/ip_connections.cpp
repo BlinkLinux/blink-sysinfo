@@ -49,11 +49,11 @@ bool getIpConnectionList(IpConnectionList& list) {
     conn.remote_addr = parts.at(4);
     const QString& state = parts.at(5);
     if (state == "LISTEN") {
-      conn.connection_state = IpConnectionState::Listen;
+      conn.state = IpConnectionState::Listen;
     } else if (state == "CLOSE_WAIT") {
-      conn.connection_state = IpConnectionState::CloseWait;
+      conn.state = IpConnectionState::CloseWait;
     } else if (state == "ESTABLISHED") {
-      conn.connection_state = IpConnectionState::Established;
+      conn.state = IpConnectionState::Established;
     }
     list.append(conn);
   }

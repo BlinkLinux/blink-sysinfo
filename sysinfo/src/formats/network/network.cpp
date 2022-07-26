@@ -7,5 +7,15 @@
 namespace sysinfo {
 namespace network {
 
+QJsonObject network::dump(const NetworkInfo& info) {
+  QJsonObject obj;
+  obj.insert("arpList", dump(info.arp_list));
+  obj.insert("dnsList", dump(info.dns_list));
+  obj.insert("interfaces", dump(info.iface_list));
+  obj.insert("connections", dump(info.connection_list));
+  obj.insert("routingTable", dump(info.routing_table));
+  return obj;
+}
+
 }  // namespace network
 }  // namespace sysinfo

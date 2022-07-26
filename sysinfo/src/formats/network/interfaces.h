@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_NETWORK_INTERFACES_H_
 #define SYSINFO_SRC_FORMATS_NETWORK_INTERFACES_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -37,6 +39,10 @@ struct NetworkInterface {
 };
 
 using NetworkInterfaceList = QVector<NetworkInterface>;
+
+QString dump(NetworkInterfaceType type);
+QJsonObject dump(const NetworkInterface& iface);
+QJsonArray dump(const NetworkInterfaceList& list);
 
 }  // namespace network
 }  // namespace sysinfo

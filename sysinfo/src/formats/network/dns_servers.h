@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_NETWORK_DNS_SERVERS_H_
 #define SYSINFO_SRC_FORMATS_NETWORK_DNS_SERVERS_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -17,6 +19,9 @@ struct DnsServer {
 };
 
 using DnsServerList = QVector<DnsServer>;
+
+QJsonObject dump(const DnsServer& server);
+QJsonArray dump(const DnsServerList& list);
 
 }  // namespace network
 }  // namespace sysinfo

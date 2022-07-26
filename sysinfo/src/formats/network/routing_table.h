@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_NETWORK_ROUTING_TABLE_H_
 #define SYSINFO_SRC_FORMATS_NETWORK_ROUTING_TABLE_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -22,6 +24,9 @@ struct Routing {
 };
 
 using RoutingList = QVector<Routing>;
+
+QJsonObject dump(const Routing& routing);
+QJsonArray dump(const RoutingList& list);
 
 }  // namespace network
 }  // namespace sysinfo

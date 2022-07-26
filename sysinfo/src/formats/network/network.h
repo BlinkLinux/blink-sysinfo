@@ -24,6 +24,8 @@ struct NetworkInfo {
   RoutingList routing_table{};
 };
 
+QJsonObject dump(const NetworkInfo& info);
+
 }  // namespace network
 }  // namespace sysinfo
 

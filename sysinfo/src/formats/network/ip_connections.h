@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_NETWORK_IP_CONNECTIONS_H_
 #define SYSINFO_SRC_FORMATS_NETWORK_IP_CONNECTIONS_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -28,7 +30,7 @@ enum class IpConnectionProtocol : quint8 {
 struct IpConnection {
   QString local_addr{};
   QString remote_addr{};
-  IpConnectionState connection_state{IpConnectionState::Nil};
+  IpConnectionState state{IpConnectionState::Nil};
   IpConnectionProtocol protocol{};
 
   qint64 send_packets{};
@@ -36,6 +38,11 @@ struct IpConnection {
 };
 
 using IpConnectionList = QVector<IpConnection>;
+
+QString dump(IpConnectionState state);
+QString dump(IpConnectionProtocol protocol);
+QJsonObject dump(const IpConnection& conn);
+QJsonArray dump(const IpConnectionList& list);
 
 }  // namespace network
 }  // namespace sysinfo
