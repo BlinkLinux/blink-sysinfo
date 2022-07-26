@@ -28,10 +28,13 @@ set(SOURCE_FILES
 
     devices/battery.cpp
     devices/battery.h
+    devices/devices.cpp
+    devices/devices.h
     devices/dmi.cpp
     devices/dmi.h
     devices/input_devices.cpp
     devices/input_devices.h
+    devices/memory.cpp
     devices/memory.h
     devices/pci.cpp
     devices/pci.h

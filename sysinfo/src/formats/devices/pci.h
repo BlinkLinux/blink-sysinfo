@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_DEVICES_PCI_H_
 #define SYSINFO_SRC_FORMATS_DEVICES_PCI_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 #include <QStringList>
@@ -45,6 +47,11 @@ struct PciDev {
 };
 
 using PciDevList = QVector<PciDev>;
+
+QJsonObject dump(const PciDevMemory& memory);
+QJsonObject dump(const PciDevIoPorts& io_port);
+QJsonObject dump(const PciDev& dev);
+QJsonArray dump(const PciDevList& list);
 
 }  // namespace devices
 }  // namespace sysinfo

@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_DEVICES_BATTERY_H_
 #define SYSINFO_SRC_FORMATS_DEVICES_BATTERY_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -22,6 +24,9 @@ struct Battery {
 };
 
 using BatteryList = QVector<Battery>;
+
+QJsonObject dump(const Battery& battery);
+QJsonArray dump(const BatteryList& list);
 
 }  // namespace devices
 }  // namespace sysinfo

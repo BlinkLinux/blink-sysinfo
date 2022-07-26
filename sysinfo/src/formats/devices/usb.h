@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_DEVICES_USB_H_
 #define SYSINFO_SRC_FORMATS_DEVICES_USB_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -31,6 +33,9 @@ struct UsbDev {
 };
 
 using UsbDevList = QVector<UsbDev>;
+
+QJsonObject dump(const UsbDev& dev);
+QJsonArray dump(const UsbDevList& list);
 
 }  // namespace devices
 }  // namespace sysinfo

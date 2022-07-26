@@ -5,6 +5,7 @@
 #ifndef SYSINFO_SRC_FORMATS_DEVICES_MEMORY_H_
 #define SYSINFO_SRC_FORMATS_DEVICES_MEMORY_H_
 
+#include <QJsonObject>
 #include <QMap>
 #include <QString>
 
@@ -12,6 +13,8 @@ namespace sysinfo {
 namespace devices {
 
 using MemoryInfos = QMap<QString, qint64>;
+
+QJsonObject dump(const MemoryInfos& memory);
 
 }  // namespace devices
 }  // namespace sysinfo

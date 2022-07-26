@@ -5,6 +5,7 @@
 #ifndef SYSINFO_SRC_FORMATS_DEVICES_DMI_H_
 #define SYSINFO_SRC_FORMATS_DEVICES_DMI_H_
 
+#include <QJsonObject>
 #include <QString>
 
 namespace sysinfo {
@@ -53,6 +54,12 @@ struct Dmi {
   DmiBoard board{};
   DmiChassis chassis{};
 };
+
+QJsonObject dump(const DmiProduct& product);
+QJsonObject dump(const DmiBios& bios);
+QJsonObject dump(const DmiBoard& board);
+QJsonObject dump(const DmiChassis& chassis);
+QJsonObject dump(const Dmi& dmi);
 
 }  // namespace devices
 }  // namespace sysinfo

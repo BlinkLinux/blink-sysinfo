@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_DEVICES_INPUT_DEVICES_H_
 #define SYSINFO_SRC_FORMATS_DEVICES_INPUT_DEVICES_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -31,6 +33,10 @@ struct InputDev {
 };
 
 using InputDevList = QVector<InputDev>;
+
+QString dump(InputDevType type);
+QJsonObject dump(const InputDev& dev);
+QJsonArray dump(const InputDevList& list);
 
 }  // namespace devices
 }  // namespace sysinfo
