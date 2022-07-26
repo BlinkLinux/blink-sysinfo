@@ -29,6 +29,8 @@ set(SOURCE_FILES
 
     devices/battery.cpp
     devices/battery.h
+    devices/devices.cpp
+    devices/devices.h
     devices/dmi.cpp
     devices/dmi.h
     devices/input_devices.cpp
