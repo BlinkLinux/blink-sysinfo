@@ -16,6 +16,7 @@
 #include "config/config.h"
 #include "modules/computer/computer.h"
 #include "modules/devices/devices.h"
+#include "modules/network/network.h"
 
 namespace sysinfo {
 namespace {
@@ -54,6 +55,9 @@ void readCommandLine() {
     return;
   }
   if (parser.isSet(network_opt)) {
+    network::NetworkInfo info;
+    network::getNetworkInfo(info);
+    writeObjectToStdout(dump(info));
     return;
   }
 }
