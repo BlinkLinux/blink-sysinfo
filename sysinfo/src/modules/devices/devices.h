@@ -10,7 +10,7 @@
 namespace sysinfo {
 namespace devices {
 
-bool getDeviceInfo(DeviceInfo& info);
+bool getDevicesInfo(DevicesInfo& info);
 
 }  // namespace devices
 }  // namespace sysinfo

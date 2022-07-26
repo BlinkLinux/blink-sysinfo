@@ -15,17 +15,15 @@
 
 #include "config/config.h"
 #include "modules/computer/computer.h"
+#include "modules/devices/devices.h"
 
 namespace sysinfo {
 namespace {
 
-QByteArray dumpToJson(const QJsonObject& object) {
+void writeObjectToStdout(const QJsonObject& object) {
   QJsonDocument doc;
   doc.setObject(object);
-  return doc.toJson();
-}
-
-void writeToStdout(const QByteArray& bytes) {
+  const QByteArray bytes = doc.toJson();
   const std::string s = bytes.toStdString();
   write(STDOUT_FILENO, s.c_str(), s.size());
 }
@@ -46,11 +44,13 @@ void readCommandLine() {
   if (parser.isSet(computer_opt)) {
     computer::ComputerInfo info;
     computer::getComputerInfo(info);
-    const QByteArray bytes = dumpToJson(dump(info));
-    writeToStdout(bytes);
+    writeObjectToStdout(dump(info));
     return;
   }
   if (parser.isSet(devices_opt)) {
+    devices::DevicesInfo info;
+    devices::getDevicesInfo(info);
+    writeObjectToStdout(dump(info));
     return;
   }
   if (parser.isSet(network_opt)) {

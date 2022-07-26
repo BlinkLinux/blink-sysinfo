@@ -17,7 +17,7 @@
 namespace sysinfo {
 namespace devices {
 
-struct DeviceInfo {
+struct DevicesInfo {
   BatteryList batteries{};
   Dmi dmi{};
   InputDevList input_list{};
@@ -26,7 +26,7 @@ struct DeviceInfo {
   UsbDevList usb_list{};
 };
 
-QJsonObject dump(const DeviceInfo& info);
+QJsonObject dump(const DevicesInfo& info);
 
 }  // namespace devices
 }  // namespace sysinfo

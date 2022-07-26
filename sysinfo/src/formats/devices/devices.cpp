@@ -7,7 +7,7 @@
 namespace sysinfo {
 namespace devices {
 
-QJsonObject dump(const DeviceInfo& info) {
+QJsonObject dump(const DevicesInfo& info) {
   QJsonObject obj;
   obj.insert("batteries", dump(info.batteries));
   obj.insert("dmi", dump(info.dmi));

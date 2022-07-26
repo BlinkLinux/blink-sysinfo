@@ -14,7 +14,7 @@
 namespace sysinfo {
 namespace devices {
 
-bool getDeviceInfo(DeviceInfo& info) {
+bool getDevicesInfo(DevicesInfo& info) {
   bool ok = true;
   ok &= getBatteryInfo(info.batteries);
   ok &= getDmiInfo(info.dmi);
