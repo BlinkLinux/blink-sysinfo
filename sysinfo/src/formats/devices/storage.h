@@ -15,7 +15,6 @@ namespace sysinfo {
 namespace devices {
 
 enum class MBRType : quint8 {
-  Unknown = 0x0,
   Empty = 0x0,
   FAT12Type = 0x1,
   XENIX_root = 0x2,
@@ -107,6 +106,7 @@ enum class MBRType : quint8 {
   Linux_raid_autodetect = 0xfd,
   LANstep = 0xfe,
   BBT = 0xff,
+  Unknow = 0x00,
 };
 
 enum class GPTType: quint8 {
@@ -237,7 +237,7 @@ enum class GPTType: quint8 {
   // Atari TOS
   BD_P_Atari = 102,
   GUIDTypeEnd,
-  UnknownUUID
+  UnknowUUID
 };
 
 struct BlockPartition {
@@ -259,36 +259,36 @@ struct BlockPartition {
 };
 
 enum class FSType: quint8 {
-  InvalidFS = 0,
-  UnknownFS,
-  Ext2,
-  Ext3,
-  Ext4,
-  Fat12,
-  Fat16,
-  Fat32,
-  Btrfs,
-  F2fs,
-  HfsPlus,
-  Minix,
-  Nilfs2,
-  Ntfs,
-  Reiser4,
-  Vfat,
-  Iso9660,
-  Jfs,
-  Xfs,
-  Swap,
-  LVM2Member,
-  CryptoLUKS
+  InvalidFS,
+  UnknowFS,
+  ext2,
+  ext3,
+  ext4,
+  fat12,
+  fat16,
+  fat32,
+  btrfs,
+  f2fs,
+  hfs_plus,
+  minix,
+  nilfs2,
+  ntfs,
+  reiser4,
+  vfat,
+  iso9660,
+  jfs,
+  xfs,
+  swap,
+  LVM2_member,
+  crypto_LUKS
 };
 
 // Partition table type
 enum class PTType : quint8 {
-  Invalid = 0,
+  InvalidPT,
   MBR,
   GPT,
-  Unknown,
+  UnknowPT
 };
 
 struct BlockDevice {

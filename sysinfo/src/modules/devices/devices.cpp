@@ -11,6 +11,7 @@
 #include "modules/devices/memory.h"
 #include "modules/devices/pci.h"
 #include "modules/devices/sensors.h"
+#include "modules/devices/storage.h"
 #include "modules/devices/usb.h"
 
 namespace sysinfo {
@@ -25,6 +26,7 @@ bool getDevicesInfo(DevicesInfo& info) {
   ok &= getMemoryInfo(info.memory_info);
   ok &= getPciDevList(info.pci_list);
   ok &= getSensorList(info.sensors);
+  ok &= getStorageList(info.storage_list);
   ok &= getUsbDevices(info.usb_list);
   return ok;
 }
