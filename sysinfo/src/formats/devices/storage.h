@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_DEVICES_STORAGE_H_
 #define SYSINFO_SRC_FORMATS_DEVICES_STORAGE_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVariantMap>
 #include <QVector>
@@ -235,7 +237,7 @@ enum class GPTType: quint8 {
   // Atari TOS
   BD_P_Atari = 102,
   GUIDTypeEnd,
-  UnknowUUID
+  UnknownUUID
 };
 
 struct BlockPartition {
@@ -255,7 +257,6 @@ struct BlockPartition {
   bool is_contained{};
   bool is_container{};
 };
-
 
 enum class FSType: quint8 {
   InvalidFS = 0,
@@ -363,6 +364,15 @@ struct StorageDisk {
 };
 
 using StorageList = QVector<StorageDisk>;
+
+qint32 dump(MBRType type);
+qint32 dump(GPTType type);
+QJsonObject dump(const BlockPartition& partition);
+qint32 dump(FSType type);
+qint32 dump(PTType type);
+QJsonObject dump(const BlockDevice& device);
+QJsonObject dump(const StorageDisk& disk);
+QJsonArray dump(const StorageList& list);
 
 }  // namespace devices
 }  // namespace sysinfo
