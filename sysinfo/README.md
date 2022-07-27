@@ -2,13 +2,20 @@
 # About
 
 ## Deps
+- Qt5
 - cmake
 - g++
-- Qt5
 - gtest
-- lsb-release
 - kmod
+- lsb-release
 - mesa-utils
+- netstat-nat
+- ninja-build
 - pciutils
 - usbutils
-- netstat-nat
+
+## Build
+```bash
+cmake -B build -G Ninja
+cmake --build build
+```
