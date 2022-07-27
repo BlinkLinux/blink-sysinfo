@@ -9,6 +9,7 @@
 #include <QFileInfo>
 
 #include "base/file.h"
+#include "base/string.h"
 
 namespace sysinfo {
 namespace devices {
@@ -20,22 +21,22 @@ QString getSensorPath(int number, const char* prefix) {
   return QString::asprintf("/sys/class/hwmon/hwmon%d/%s", number, prefix);
 }
 
-QString determine_driver_for_hwmon_path(const QString& path) {
-  QString driver;
+QString determineDriverForHwmonPath(const QString& path) {
+  QFileInfo info;
 
-  driver = QString("%1/device/driver").arg(path);
-  if (QFileInfo::exists(driver)) {
-    return QFileInfo(driver).baseName();
+  info = QString("%1/device/driver").arg(path);
+  if (info.exists()) {
+    return info.canonicalFilePath();
   }
 
-  driver = QString("%1/device").arg(path);
-  if (QFileInfo::exists(driver)) {
-    return driver;
+  info = QString("%1/device").arg(path);
+  if (info.exists()) {
+    return info.canonicalFilePath();
   }
 
-  driver = QString("%1/name").arg(path);
-  if (QFileInfo::exists(driver)) {
-    return driver;
+  info = QString("%1/name").arg(path);
+  if (info.exists()) {
+    return info.canonicalFilePath();
   }
 
   return {};
@@ -85,18 +86,15 @@ bool getSensorList(Sensors& list) {
 }
 
 bool readSensorsHwmon(Sensors& list) {
-  for (const char* prefix : kHwmonPrefix) {
+  for (const char* prefix: kHwmonPrefix) {
     for (int hwmon = 0; /**/; ++hwmon) {
       const QString hwmon_path = getSensorPath(hwmon, prefix);
       if (!QFileInfo::exists(hwmon_path)) {
         break;
       }
-//      qDebug() << "hwmon_path:" << hwmon_path;
-      const QString driver = determine_driver_for_hwmon_path(hwmon_path);
-      SensorLabels sensor_labels;
-//      qDebug() << "hwmon driver:" << driver;
+      const QString driver = determineDriverForHwmonPath(hwmon_path);
 
-      for (const auto& sensor : kHwmonSensors) {
+      for (const auto& sensor: kHwmonSensors) {
         for (int count = sensor.begin_at; /**/; ++count) {
           const QString sensor_path = QString::asprintf(sensor.path_format,
                                                         hwmon_path.toStdString().c_str(), count);
@@ -112,49 +110,20 @@ bool readSensorsHwmon(Sensors& list) {
           const double value = content.toDouble() / sensor.adjust_ratio;
 
           const QString mon_name = QString::asprintf(sensor.key_format, count);
-          const QString name = sensor_labels.value(mon_name, {});
-          // TODO(Shaohua): Check sensor_label is "ignore".
-          qDebug() << "Add sensor: friendly_name:" << sensor.friendly_name << ", name:" << name
-                   << ", driver:" << driver << ", unit:" << sensor.unit
-                   << ", value:" << value;
+          QString name = QString("%1/%2").arg(QFileInfo(driver).fileName(), mon_name);
+//          qDebug() << "Add sensor: friendly_name:" << sensor.friendly_name << ", name:" << name
+//                   << ", unit:" << sensor.unit << ", value:" << value;
 
-          list.append(Sensor {
-            .name = name,
-            .friendly_name = sensor.friendly_name,
-            .unit = sensor.unit,
-            .value = value,
+          list.append(Sensor{
+              .name = name,
+              .driver_path = driver,
+              .mon_name = mon_name,
+              .friendly_name = sensor.friendly_name,
+              .unit = sensor.unit,
+              .value = value,
           });
         }
       }
-    }
-  }
-
-  return true;
-}
-
-bool readSensorLabels(SensorLabels& labels) {
-  QString content;
-  if (!readTextFile("/etc/sensors3.conf", content)) {
-    if (!readTextFile("/etc/sensors.conf", content)) {
-      // No config file available.
-      return false;
-    }
-  }
-
-  QTextStream stream(&content);
-  QString line;
-  bool lock = false;
-
-  while (stream.readLineInto(&line)) {
-    if (line.isEmpty() || line.startsWith('#') || line == '\0') {
-      continue;
-    }
-
-    if (lock) {
-      // todo
-    } else if (line.startsWith("chip")){
-      // chip line, delimiter.
-
     }
   }
 

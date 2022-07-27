@@ -13,6 +13,8 @@ namespace devices {
 
 struct Sensor {
   QString name{};
+  QString driver_path{};
+  QString mon_name{};
   QString friendly_name{};
   QString unit{};
   double value{};

@@ -16,9 +16,6 @@ bool getSensorList(Sensors& list);
 
 bool readSensorsHwmon(Sensors& list);
 
-using SensorLabels = QMap<QString, QString>;
-bool readSensorLabels(SensorLabels& labels);
-
 }  // namespace devices
 }  // namespace sysinfo
 
