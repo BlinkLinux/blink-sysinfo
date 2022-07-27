@@ -47,7 +47,6 @@ enum class PTType : quint8 {
 
 struct BlockDevice {
   QString path{};
-  QVariantMap configuration{};
   QString crypto_backing_device{};
   QByteArray device{};
   QString driver{};
@@ -61,15 +60,11 @@ struct BlockDevice {
   QString md_raid{};
   QString md_raid_member{};
   QByteArray preferred_device{};
-  QByteArrayList symbolic_links{};
+  QStringList symbolic_links{};
   QStringList user_space_mount_options{};
 
   // for filesystem
-  QByteArrayList mount_points{};
-
-  // for encrypted device
-  QVariantMap child_configuration{};
-  QString clear_text_device{};
+  QStringList mount_points{};
 
   quint64 device_number{};
   quint64 size{};
@@ -324,7 +319,8 @@ struct BlockPartition : BlockDevice {
 
   quint64 flags{};
   quint64 offset{};
-  quint64 size{};
+  // duplicated field.
+//  quint64 size{};
   quint32 number{};
 
   MBRType mbr_type{};
