@@ -56,6 +56,8 @@ set(SOURCE_FILES
     devices/memory.h
     devices/pci.cpp
     devices/pci.h
+    devices/processor_x86.cpp
+    devices/processor_x86.h
     devices/processor.cpp
     devices/processor.h
     devices/sensors.cpp
@@ -103,6 +105,7 @@ set(TEST_FILES
     devices/memory_test.cpp
     devices/pci_test.cpp
     devices/processor_test.cpp
+    devices/processor_x86_test.cpp
     devices/sensors_test.cpp
     devices/storage_test.cpp
     devices/usb_test.cpp

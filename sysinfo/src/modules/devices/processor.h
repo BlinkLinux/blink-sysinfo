@@ -14,6 +14,8 @@ bool getProcessorList(Processors& processors);
 
 constexpr const char* kProcCpuInfo = "/proc/cpuinfo";
 
+bool isLittleEndian();
+
 }  // namespace devices
 }  // namespace sysinfo
 

@@ -9,7 +9,7 @@ namespace devices {
 
 QJsonObject dump(const Processor& processor) {
   QJsonObject obj;
-  obj.insert("name", processor.name);
+//  obj.insert("name", processor.name);
   // TODO(Shaohua): Add additional fields.
   return obj;
 }

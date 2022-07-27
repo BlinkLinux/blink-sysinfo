@@ -19,7 +19,8 @@ bool getProcessorList(Processors& processors) {
 
   QTextStream stream(&content);
   QString line;
-  Processor processor;
+  Processor processor{};
+  processor.is_big_endian = isLittleEndian();
 
   while (stream.readLineInto(&line)) {
     const QStringList parts = line.split(':');

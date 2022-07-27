@@ -14,18 +14,14 @@ namespace sysinfo {
 namespace devices {
 
 struct Processor {
-  QString name{};
-  QString frequency{};
-
-  qint32 number_physical{};
-  qint32 number_cores{};
-  qint32 number_threads{};
-
+  QString vendor_id{};
   QString model_name{};
+  qint32 model_id{};
+  qint32 family_id{};
   QString str_model{};
 
   float cpu_mhz{};
-  bool is_big_endian{};
+  bool is_little_endian{};
 };
 
 using Processors = QVector<Processor>;
