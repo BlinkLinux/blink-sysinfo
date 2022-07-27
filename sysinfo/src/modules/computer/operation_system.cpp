@@ -44,7 +44,7 @@ bool getOperationSystem(OperationSystem& os) {
     }
   }
   os.libc = getLibcVersion();
-
+  os.desktop = detectDesktopEnvironment().trimmed();
   os.load_avg = getLoadAverage();
 
   return true;
