@@ -5,6 +5,8 @@
 #ifndef SYSINFO_SRC_FORMATS_DEVICES_SENSORS_H_
 #define SYSINFO_SRC_FORMATS_DEVICES_SENSORS_H_
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QVector>
 
@@ -21,6 +23,9 @@ struct Sensor {
 };
 
 using Sensors = QVector<Sensor>;
+
+QJsonObject dump(const Sensor& sensor);
+QJsonArray dump(const Sensors& list);
 
 }  // namespace devices
 }  // namespace sysinfo

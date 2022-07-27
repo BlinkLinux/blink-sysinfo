@@ -10,6 +10,7 @@
 #include "modules/devices/input_devices.h"
 #include "modules/devices/memory.h"
 #include "modules/devices/pci.h"
+#include "modules/devices/sensors.h"
 #include "modules/devices/usb.h"
 
 namespace sysinfo {
@@ -23,6 +24,7 @@ bool getDevicesInfo(DevicesInfo& info) {
   ok &= getInputDevices(info.input_list);
   ok &= getMemoryInfo(info.memory_info);
   ok &= getPciDevList(info.pci_list);
+  ok &= getSensorList(info.sensors);
   ok &= getUsbDevices(info.usb_list);
   return ok;
 }

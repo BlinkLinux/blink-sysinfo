@@ -13,6 +13,7 @@
 #include "formats/devices/input_devices.h"
 #include "formats/devices/memory.h"
 #include "formats/devices/pci.h"
+#include "formats/devices/sensors.h"
 #include "formats/devices/usb.h"
 
 namespace sysinfo {
@@ -25,6 +26,7 @@ struct DevicesInfo {
   InputDevList input_list{};
   MemoryInfos memory_info{};
   PciDevList pci_list{};
+  Sensors sensors{};
   UsbDevList usb_list{};
 };
 
