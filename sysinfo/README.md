@@ -13,6 +13,8 @@
 - ninja-build
 - pciutils
 - usbutils
+- udisks2
+- libudisks2-qt5-dev
 
 ## Build
 ```bash

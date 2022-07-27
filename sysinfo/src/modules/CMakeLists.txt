@@ -1,4 +1,17 @@
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(Udisks2 REQUIRED IMPORTED_TARGET udisks2-qt5)
+
+set(LINK_LIBS
+    Qt5::Core
+    Qt5::DBus
+    Qt5::Gui
+    PkgConfig::Udisks2
+
+    sysinfo-base
+    sysinfo-formats
+    )
+
 set(SOURCE_FILES
     computer/boots.cpp
     computer/boots.h
@@ -47,6 +60,8 @@ set(SOURCE_FILES
     devices/processor.h
     devices/sensors.cpp
     devices/sensors.h
+    devices/storage.cpp
+    devices/storage.h
     devices/usb.cpp
     devices/usb.h
 
@@ -89,6 +104,7 @@ set(TEST_FILES
     devices/pci_test.cpp
     devices/processor_test.cpp
     devices/sensors_test.cpp
+    devices/storage_test.cpp
     devices/usb_test.cpp
 
     network/arp_table_test.cpp
@@ -104,11 +120,7 @@ add_library(sysinfo-modules STATIC
     ${SOURCE_FILES}
     )
 target_link_libraries(sysinfo-modules
-    Qt5::Core
-    Qt5::Gui
-
-    sysinfo-base
-    sysinfo-formats
+    ${LINK_LIBS}
     )
 
 if (BUILD_TESTING)

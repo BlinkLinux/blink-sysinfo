@@ -46,6 +46,8 @@ set(SOURCE_FILES
     devices/processor.h
     devices/sensors.cpp
     devices/sensors.h
+    devices/storage.cpp
+    devices/storage.h
     devices/usb.cpp
     devices/usb.h
 
