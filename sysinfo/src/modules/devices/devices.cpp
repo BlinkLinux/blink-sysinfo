@@ -4,6 +4,7 @@
 
 #include "modules/devices/devices.h"
 
+#include "modules/devices/audio_devices.h"
 #include "modules/devices/battery.h"
 #include "modules/devices/dmi.h"
 #include "modules/devices/input_devices.h"
@@ -16,6 +17,7 @@ namespace devices {
 
 bool getDevicesInfo(DevicesInfo& info) {
   bool ok = true;
+  ok &= getAudioDevices(info.audio_devices);
   ok &= getBatteryInfo(info.batteries);
   ok &= getDmiInfo(info.dmi);
   ok &= getInputDevices(info.input_list);

@@ -7,6 +7,7 @@
 
 #include <QJsonObject>
 
+#include "formats/devices/audio_devices.h"
 #include "formats/devices/battery.h"
 #include "formats/devices/dmi.h"
 #include "formats/devices/input_devices.h"
@@ -18,6 +19,7 @@ namespace sysinfo {
 namespace devices {
 
 struct DevicesInfo {
+  AudioDevices audio_devices{};
   BatteryList batteries{};
   Dmi dmi{};
   InputDevList input_list{};

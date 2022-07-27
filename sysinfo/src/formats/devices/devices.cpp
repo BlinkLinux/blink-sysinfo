@@ -9,6 +9,7 @@ namespace devices {
 
 QJsonObject dump(const DevicesInfo& info) {
   QJsonObject obj;
+  obj.insert("audioDevices", QJsonArray::fromStringList(info.audio_devices));
   obj.insert("batteries", dump(info.batteries));
   obj.insert("dmi", dump(info.dmi));
   obj.insert("inputDevices", dump(info.input_list));
