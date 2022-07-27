@@ -44,6 +44,8 @@ set(SOURCE_FILES
     devices/pci.h
     devices/processor.cpp
     devices/processor.h
+    devices/sensors.cpp
+    devices/sensors.h
     devices/usb.cpp
     devices/usb.h
 

@@ -45,6 +45,8 @@ set(SOURCE_FILES
     devices/pci.h
     devices/processor.cpp
     devices/processor.h
+    devices/sensors.cpp
+    devices/sensors.h
     devices/usb.cpp
     devices/usb.h
 
@@ -86,6 +88,7 @@ set(TEST_FILES
     devices/memory_test.cpp
     devices/pci_test.cpp
     devices/processor_test.cpp
+    devices/sensors_test.cpp
     devices/usb_test.cpp
 
     network/arp_table_test.cpp
