@@ -12,6 +12,8 @@ namespace devices {
 
 bool getProcessorList(Processors& processors);
 
+constexpr const char* kProcCpuInfo = "/proc/cpuinfo";
+
 }  // namespace devices
 }  // namespace sysinfo
 
