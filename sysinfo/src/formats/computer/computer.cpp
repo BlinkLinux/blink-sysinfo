@@ -19,6 +19,7 @@ QJsonObject dump(const ComputerInfo& info) {
   obj.insert("memory", dump(info.memory));
   obj.insert("modules", dump(info.module_list));
   obj.insert("os", dump(info.os));
+  obj.insert("summary", dump(info.summary));
   obj.insert("uptime", dump(info.uptime));
   obj.insert("users", dump(info.users));
   return obj;

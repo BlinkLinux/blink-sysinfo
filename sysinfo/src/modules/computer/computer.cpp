@@ -14,6 +14,7 @@
 #include "modules/computer/memory.h"
 #include "modules/computer/modules.h"
 #include "modules/computer/operation_system.h"
+#include "modules/computer/summary.h"
 #include "modules/computer/uptime.h"
 #include "modules/computer/users.h"
 
@@ -31,6 +32,7 @@ bool getComputerInfo(ComputerInfo& info) {
   ok &= getMemoryInfo(info.memory);
   ok &= getKernelModules(info.module_list);  // 0.6s
   ok &= getOperationSystem(info.os);  // 1.9s
+  ok &= getSummary(info.summary);
   ok &= getUptime(info.uptime);
   ok &= getUserList(info.users);
   return ok;

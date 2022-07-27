@@ -17,6 +17,7 @@
 #include "formats/computer/memory.h"
 #include "formats/computer/modules.h"
 #include "formats/computer/operation_system.h"
+#include "formats/computer/summary.h"
 #include "formats/computer/uptime.h"
 #include "formats/computer/users.h"
 
@@ -34,6 +35,7 @@ struct ComputerInfo {
   Memory memory{};
   ModuleList module_list{};
   OperationSystem os{};
+  Summary summary{};
   Uptime uptime{};
   UserList users{};
 };

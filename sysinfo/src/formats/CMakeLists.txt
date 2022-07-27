@@ -21,11 +21,15 @@ set(SOURCE_FILES
     computer/modules.h
     computer/operation_system.cpp
     computer/operation_system.h
+    computer/summary.cpp
+    computer/summary.h
     computer/uptime.cpp
     computer/uptime.h
     computer/users.cpp
     computer/users.h
 
+    devices/audio_devices.cpp
+    devices/audio_devices.h
     devices/battery.cpp
     devices/battery.h
     devices/devices.cpp
@@ -38,6 +42,8 @@ set(SOURCE_FILES
     devices/memory.h
     devices/pci.cpp
     devices/pci.h
+    devices/processor.cpp
+    devices/processor.h
     devices/usb.cpp
     devices/usb.h
 

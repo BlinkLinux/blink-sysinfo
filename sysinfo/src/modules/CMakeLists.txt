@@ -22,11 +22,15 @@ set(SOURCE_FILES
     computer/modules.h
     computer/operation_system.cpp
     computer/operation_system.h
+    computer/summary.cpp
+    computer/summary.h
     computer/uptime.cpp
     computer/uptime.h
     computer/users.cpp
     computer/users.h
 
+    devices/audio_devices.cpp
+    devices/audio_devices.h
     devices/battery.cpp
     devices/battery.h
     devices/devices.cpp
@@ -39,6 +43,8 @@ set(SOURCE_FILES
     devices/memory.h
     devices/pci.cpp
     devices/pci.h
+    devices/processor.cpp
+    devices/processor.h
     devices/usb.cpp
     devices/usb.h
 
@@ -73,11 +79,13 @@ set(TEST_FILES
     computer/uptime_test.cpp
     computer/users_test.cpp
 
+    devices/audio_devices_test.cpp
     devices/battery_test.cpp
     devices/dmi_test.cpp
     devices/input_devices_test.cpp
     devices/memory_test.cpp
     devices/pci_test.cpp
+    devices/processor_test.cpp
     devices/usb_test.cpp
 
     network/arp_table_test.cpp
