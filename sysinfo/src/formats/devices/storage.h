@@ -293,7 +293,7 @@ enum class PTType : quint8 {
 struct BlockDevice {
   QString path{};
   QString crypto_backing_device{};
-  QByteArray device{};
+  QString device{};
   QString drive{};
   QString hint_name{};
   QString id{};
@@ -359,7 +359,7 @@ struct StorageDisk {
   bool is_optical{};
   bool optical_is_blank{};
 
-  QVector<BlockDevice> devices{};
+  QVector<BlockDevice> block_devices{};
 };
 
 using StorageList = QVector<StorageDisk>;

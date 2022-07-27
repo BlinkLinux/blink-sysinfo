@@ -22,15 +22,15 @@ void registerDBusObjects() {
   qDBusRegisterMetaType<QMap<QString, QVariantMap>>();
   qDBusRegisterMetaType<QList<QPair<QString, QVariantMap>>>();
   qDBusRegisterMetaType<QByteArrayList>();
-  qDBusRegisterMetaType<QPair<QString,QVariantMap>>();
-  qDBusRegisterMetaType<QMap<QDBusObjectPath,QMap<QString,QVariantMap>>>();
+  qDBusRegisterMetaType<QPair<QString, QVariantMap>>();
+  qDBusRegisterMetaType<QMap<QDBusObjectPath, QMap<QString, QVariantMap>>>();
 
   QMetaType::registerDebugStreamOperator<QList<QPair<QString, QVariantMap>>>();
 }
 
 QStringList toStringList(const QByteArrayList& list) {
   QStringList result;
-  for (const auto& item : list) {
+  for (const auto& item: list) {
     result.append(item.trimmed());
   }
   return result;
@@ -58,7 +58,7 @@ bool getBlockDeviceInfo(const QString& path, BlockDevice& device) {
   QScopedPointer<DBlockDevice> block_device(DDiskManager::createBlockDevice(path));
   device.path = block_device->path();
   device.crypto_backing_device = block_device->cryptoBackingDevice();
-  device.device = block_device->device();
+  device.device = block_device->device().trimmed();
   device.drive = block_device->drive();
   device.hint_name = block_device->hintName();
   device.id = block_device->id();
@@ -136,17 +136,26 @@ bool getStorageList(StorageList& list) {
 
   QScopedPointer<DDiskManager> manager(new DDiskManager);
 
-  for (const auto& path : manager->diskDevices()) {
+  for (const auto& path: manager->diskDevices()) {
     StorageDisk disk;
     getDiskDeviceInfo(path, disk);
     list.append(disk);
   }
 
   QVector<BlockDevice> block_devices;
-  for (const auto& path : DDiskManager::blockDevices({})) {
+  for (const auto& path: DDiskManager::blockDevices({})) {
     BlockDevice device;
     getBlockDeviceInfo(path, device);
     block_devices.append(device);
+  }
+
+  for (auto& block_device: block_devices) {
+    for (auto& disk: list) {
+      if (block_device.drive == disk.path) {
+        disk.block_devices.append(block_device);
+        break;
+      }
+    }
   }
 
   return true;
