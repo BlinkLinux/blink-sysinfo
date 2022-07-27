@@ -35,7 +35,7 @@ bool getDmiInfo(Dmi& dmi) {
 
   const auto read_file = [&dir](const QString& filename) {
     const QString filepath = QDir(dir).filePath(filename);
-    return readTextFile(filepath);
+    return readTextFile(filepath).trimmed();
   };
 
   dmi.product.name = read_file("id/product_name");
