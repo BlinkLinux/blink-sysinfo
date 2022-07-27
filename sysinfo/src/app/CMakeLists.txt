@@ -11,3 +11,8 @@ add_executable(sysinfo
 target_link_libraries(sysinfo
     ${LINK_LIBS}
     )
+
+## Installation
+install(TARGETS sysinfo
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+    )

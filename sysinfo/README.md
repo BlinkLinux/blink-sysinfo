@@ -18,4 +18,7 @@
 ```bash
 cmake -B build -G Ninja
 cmake --build build
+DESTDIR=dist ninja -C build install
 ```
+
+Executable file located at `build/dist/usr/local/bin/sysinfo`.
