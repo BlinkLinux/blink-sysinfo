@@ -14,13 +14,30 @@ namespace sysinfo {
 namespace devices {
 
 struct Processor {
-  QString vendor_id{};
+  // processor id
+  qint32 id{};
   QString model_name{};
+  QString vendor_id{};
+  QString flags{};
+
+  QString power_management{};
+  QString microcode{};
+  QString bugs{};
+  QString fdiv_bug{};
+  QString hlt_bug{};
+  QString f00f_bug{};
+  QString coma_bug{};
+
+  QString str_model{};
+  qint32 cache_size{};
   qint32 model_id{};
   qint32 family_id{};
-  QString str_model{};
+  qint32 stepping{};
 
   float cpu_mhz{};
+  float bogomips{};
+
+  bool has_fpu{};
   bool is_little_endian{};
 };
 

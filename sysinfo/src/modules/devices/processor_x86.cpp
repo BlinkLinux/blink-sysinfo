@@ -4,6 +4,9 @@
 
 #include "modules/devices/processor_x86.h"
 
+#include <QTextStream>
+
+#include "base/file.h"
 #include "modules/devices/processor.h"
 
 namespace sysinfo {
@@ -119,6 +122,76 @@ QString getProcessorStringFamily(const QString& vendor_id, qint32 family, qint32
 }
 
 bool getProcessorList(Processors& processors) {
+  QString content;
+  if (!readTextFile(kProcCpuInfo, content)) {
+    return false;
+  }
+
+  QTextStream stream(&content);
+  QString line;
+  Processor processor;
+  bool processor_init = false;
+
+  while (stream.readLineInto(&line)) {
+    const QStringList parts = line.split(':');
+    if (parts.length() != 2) {
+      continue;
+    }
+    const QString name = parts.at(0).trimmed();
+    const QString value = parts.at(1).trimmed();
+
+    if (name.startsWith("processor")) {
+      // finish previous
+      if (processor_init) {
+        processors.append(processor);
+      }
+      // start next
+      processor = Processor{};
+      processor.id = value.toInt();
+      processor_init = true;
+      continue;
+    }
+
+    if (name == "model name") {
+      processor.model_name = value;
+    } else if (name == "vendor_id") {
+      processor.vendor_id = value;
+    } else if (name == "flags") {
+      processor.flags = value;
+    } else if (name == "bugs") {
+      processor.bugs = value;
+    } else if (name == "power management") {
+      processor.power_management = value;
+    } else if (name == "microcode") {
+      processor.microcode = value;
+    } else if (name == "cache size") {
+      processor.cache_size = value.toInt();
+    } else if (name == "cpu MHZ") {
+      processor.cpu_mhz = value.toFloat();
+    } else if (name == "bogomips") {
+      processor.bogomips = value.toFloat();
+    } else if (name == "fpu") {
+      processor.has_fpu = true;
+    } else if (name == "fdiv_bug") {
+      processor.fdiv_bug = value;
+    } else if (name == "hlt_bug") {
+      processor.hlt_bug = value;
+    } else if (name == "f00f_bug") {
+      processor.f00f_bug = value;
+    } else if (name == "coma_bug") {
+      processor.coma_bug = value;
+    } else if (name == "model") {
+      processor.model_id = value.toInt();
+    } else if (name == "cpu family") {
+      processor.family_id = value.toInt();
+    } else if (name == "stepping") {
+      processor.stepping = value.toInt();
+    }
+  }
+
+  processors.append(processor);
+  // TODO(Shaohua): Convert unit
+
   return true;
 }
 

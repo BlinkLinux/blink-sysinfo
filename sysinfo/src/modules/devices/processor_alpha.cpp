@@ -20,12 +20,12 @@ bool getProcessorList(Processors& processors) {
   QTextStream stream(&content);
   QString line;
   Processor processor{};
-  processor.is_big_endian = isLittleEndian();
+  processor.is_little_endian = isLittleEndian();
 
   while (stream.readLineInto(&line)) {
     const QStringList parts = line.split(':');
-    const QString& name = parts.at(0);
-    const QString& value = parts.at(1);
+    const QString name = parts.at(0).trimmed();
+    const QString value = parts.at(1).trimmed();
     if (parts.length() == 2 && !name.isEmpty() && !value.isEmpty()) {
       if (name == "cpu model") {
         processor.model_name = QString("Alpha %1").arg(value);

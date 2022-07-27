@@ -14,7 +14,7 @@ TEST(StringTest, TestSplitEmptyParts) {
   QStringList parts = splitEmptyParts(" hello  world ");
   ASSERT_EQ(parts.length(), 2);
   parts = splitEmptyParts(" hello \tworld ");
-  ASSERT_EQ(parts.length(), 3);
+  ASSERT_EQ(parts.length(), 2);
 }
 
 }  // namespace sysinfo
