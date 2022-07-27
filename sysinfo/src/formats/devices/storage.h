@@ -12,79 +12,6 @@
 namespace sysinfo {
 namespace devices {
 
-enum class FSType: quint8 {
-  InvalidFS = 0,
-  UnknownFS,
-  Ext2,
-  Ext3,
-  Ext4,
-  Fat12,
-  Fat16,
-  Fat32,
-  Btrfs,
-  F2fs,
-  HfsPlus,
-  Minix,
-  Nilfs2,
-  Ntfs,
-  Reiser4,
-  Vfat,
-  Iso9660,
-  Jfs,
-  Xfs,
-  Swap,
-  LVM2Member,
-  CryptoLUKS
-};
-
-// Partition table type
-enum class PTType : quint8 {
-  Invalid = 0,
-  MBR,
-  GPT,
-  Unknown,
-};
-
-struct BlockDevice {
-  QString path{};
-  QString crypto_backing_device{};
-  QByteArray device{};
-  QString driver{};
-  QString hint_name{};
-  QString id{};
-  QString id_label{};
-  QString id_type{};
-  QString id_uuid{};
-  QString id_usage{};
-  QString id_version{};
-  QString md_raid{};
-  QString md_raid_member{};
-  QByteArray preferred_device{};
-  QStringList symbolic_links{};
-  QStringList user_space_mount_options{};
-
-  // for filesystem
-  QStringList mount_points{};
-
-  quint64 device_number{};
-  quint64 size{};
-
-  FSType fs_type{};
-
-  // for partition table
-  PTType pt_type{};
-
-  bool has_filesystem{};
-  bool has_partition{};
-  bool is_encrypted{};
-  bool is_loop_device{};
-  bool hint_auto{};
-  bool hint_ignore{};
-  bool hint_can_make_partition{};
-  bool hint_system{};
-  bool read_only{};
-};
-
 enum class MBRType : quint8 {
   Unknown = 0x0,
   Empty = 0x0,
@@ -311,7 +238,7 @@ enum class GPTType: quint8 {
   UnknowUUID
 };
 
-struct BlockPartition : BlockDevice {
+struct BlockPartition {
   QString name{};
   QString table{};
   QString uuid{};
@@ -319,8 +246,7 @@ struct BlockPartition : BlockDevice {
 
   quint64 flags{};
   quint64 offset{};
-  // duplicated field.
-//  quint64 size{};
+  quint64 size{};
   quint32 number{};
 
   MBRType mbr_type{};
@@ -330,9 +256,85 @@ struct BlockPartition : BlockDevice {
   bool is_container{};
 };
 
+
+enum class FSType: quint8 {
+  InvalidFS = 0,
+  UnknownFS,
+  Ext2,
+  Ext3,
+  Ext4,
+  Fat12,
+  Fat16,
+  Fat32,
+  Btrfs,
+  F2fs,
+  HfsPlus,
+  Minix,
+  Nilfs2,
+  Ntfs,
+  Reiser4,
+  Vfat,
+  Iso9660,
+  Jfs,
+  Xfs,
+  Swap,
+  LVM2Member,
+  CryptoLUKS
+};
+
+// Partition table type
+enum class PTType : quint8 {
+  Invalid = 0,
+  MBR,
+  GPT,
+  Unknown,
+};
+
+struct BlockDevice {
+  QString path{};
+  QString crypto_backing_device{};
+  QByteArray device{};
+  QString drive{};
+  QString hint_name{};
+  QString id{};
+  QString id_label{};
+  QString id_type{};
+  QString id_uuid{};
+  QString id_usage{};
+  QString id_version{};
+  QString md_raid{};
+  QString md_raid_member{};
+  QByteArray preferred_device{};
+  QStringList symbolic_links{};
+  QStringList user_space_mount_options{};
+
+  // for filesystem
+  QStringList mount_points{};
+
+  quint64 device_number{};
+  quint64 size{};
+
+  FSType fs_type{};
+
+  // for partition table
+  PTType pt_type{};
+
+  bool has_filesystem{};
+  bool has_partition{};
+  bool is_encrypted{};
+  bool is_loop_device{};
+  bool hint_auto{};
+  bool hint_ignore{};
+  bool hint_can_make_partition{};
+  bool hint_system{};
+  bool read_only{};
+
+  // Partition.
+  BlockPartition partition{};
+};
+
 struct StorageDisk {
   QString path{};
-  QVariantMap configuration{};
   QString connection_bus{};
   QString id{};
   QString media{};
@@ -346,8 +348,6 @@ struct StorageDisk {
   QString vendor{};
   QString wwn{};
 
-  QVector<BlockPartition> partitions{};
-
   quint64 size{};
   quint64 time_detected{};
   quint64 time_media_detected{};
@@ -358,6 +358,8 @@ struct StorageDisk {
   bool media_available{};
   bool is_optical{};
   bool optical_is_blank{};
+
+  QVector<BlockDevice> devices{};
 };
 
 using StorageList = QVector<StorageDisk>;

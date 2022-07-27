@@ -36,11 +36,30 @@ QStringList toStringList(const QByteArrayList& list) {
   return result;
 }
 
+bool getBlockPartitionInfo(const QString& path, BlockPartition& partition) {
+  QScopedPointer<DBlockPartition> block_partition(DDiskManager::createBlockPartition(path));
+  partition.flags = block_partition->flags();
+  partition.is_contained = block_partition->isContained();
+  partition.is_container = block_partition->isContainer();
+  partition.name = block_partition->name();
+  partition.number = block_partition->number();
+  partition.offset = block_partition->offset();
+  partition.size = block_partition->size();
+  partition.table = block_partition->table();
+  partition.type = block_partition->type();
+  partition.mbr_type = static_cast<MBRType>(block_partition->eType());
+  partition.gpt_type = static_cast<GPTType>(block_partition->guidType());
+  partition.uuid = block_partition->UUID();
+
+  return true;
+}
+
 bool getBlockDeviceInfo(const QString& path, BlockDevice& device) {
   QScopedPointer<DBlockDevice> block_device(DDiskManager::createBlockDevice(path));
   device.path = block_device->path();
   device.crypto_backing_device = block_device->cryptoBackingDevice();
   device.device = block_device->device();
+  device.drive = block_device->drive();
   device.hint_name = block_device->hintName();
   device.id = block_device->id();
   device.id_label = block_device->idLabel();
@@ -73,13 +92,16 @@ bool getBlockDeviceInfo(const QString& path, BlockDevice& device) {
   device.hint_system = block_device->hintSystem();
   device.read_only = block_device->readOnly();
 
+  if (device.has_partition) {
+    getBlockPartitionInfo(path, device.partition);
+  }
+
   return true;
 }
 
 bool getDiskDeviceInfo(const QString& device_path, StorageDisk& disk) {
   QScopedPointer<DDiskDevice> disk_device(DDiskManager::createDiskDevice(device_path));
   disk.path = disk_device->path();
-  disk.configuration = disk_device->configuration();
   disk.connection_bus = disk_device->connectionBus();
   disk.id = disk_device->id();
   disk.media = disk_device->media();
