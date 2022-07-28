@@ -31,5 +31,57 @@ bool getDevicesInfo(DevicesInfo& info) {
   return ok;
 }
 
+bool getSpecificSection(const QString& name, QJsonObject& root) {
+  QJsonObject devices;
+  if (root.contains(kNameDevices)) {
+    devices = root.value(kNameDevices).toObject();
+  }
+
+  if (name == kNameAudioDevices) {
+    AudioDevices audio_devices;
+    getAudioDevices(audio_devices);
+    devices.insert(kNameAudioDevices, QJsonArray::fromStringList(audio_devices));
+  } else if (name == kNameBatteries) {
+    BatteryList list;
+    getBatteryInfo(list);
+    devices.insert(kNameBatteries, dump(list));
+  } else if (name == kNameDmi) {
+    Dmi dmi;
+    getDmiInfo(dmi);
+    devices.insert(kNameDmi, dump(dmi));
+  } else if (name == kNameInputDevices) {
+    InputDevList list;
+    getInputDevices(list);
+    devices.insert(kNameInputDevices, dump(list));
+  } else if (name == kNameMemory) {
+    MemoryInfos list;
+    getMemoryInfo(list);
+    devices.insert(kNameMemory, dump(list));
+  } else if (name == kNamePciDevices) {
+    PciDevList list;
+    getPciDevList(list);
+    devices.insert(kNamePciDevices, dump(list));
+  } else if (name == kNameSensors) {
+    Sensors sensors;
+    getSensorList(sensors);
+    devices.insert(kNameSensors, dump(sensors));
+  } else if (name == kNameStorageDevices) {
+    StorageList list;
+    getStorageList(list);
+    devices.insert(kNameStorageDevices, dump(list));
+  } else if (name == kNameUsbDevices) {
+    UsbDevList list;
+    getUsbDevices(list);
+    devices.insert(kNameUsbDevices, dump(list));
+  } else {
+    qWarning() << "Unknown section:" << name;
+    return false;
+  }
+
+  root.insert(kNameDevices, devices);
+
+  return true;
+}
+
 }  // namespace devices
 }  // namespace sysinfo

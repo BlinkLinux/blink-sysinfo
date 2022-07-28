@@ -34,6 +34,17 @@ struct DevicesInfo {
 
 QJsonObject dump(const DevicesInfo& info);
 
+constexpr const char* kNameDevices = "devices";
+constexpr const char* kNameAudioDevices = "audio";
+constexpr const char* kNameBatteries = "batteries";
+constexpr const char* kNameDmi = "dmi";
+constexpr const char* kNameInputDevices = "input";
+constexpr const char* kNameMemory = "memory";
+constexpr const char* kNamePciDevices = "pci";
+constexpr const char* kNameSensors = "sensors";
+constexpr const char* kNameStorageDevices = "storage";
+constexpr const char* kNameUsbDevices = "usb";
+
 }  // namespace devices
 }  // namespace sysinfo
 

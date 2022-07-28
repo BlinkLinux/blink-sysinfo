@@ -40,10 +40,10 @@ bool getComputerInfo(ComputerInfo& info) {
   return ok;
 }
 
-bool getSpecificSection(const QString& name, QJsonObject& object) {
+bool getSpecificSection(const QString& name, QJsonObject& root) {
   QJsonObject computer;
-  if (object.contains(kNameComputer)) {
-    computer = object.value(kNameComputer).toObject();
+  if (root.contains(kNameComputer)) {
+    computer = root.value(kNameComputer).toObject();
   }
 
   if (name == kNameBootupList) {
@@ -101,7 +101,7 @@ bool getSpecificSection(const QString& name, QJsonObject& object) {
     qWarning() << "Unknown section: " << name;
     return false;
   }
-  object.insert(kNameComputer, computer);
+  root.insert(kNameComputer, computer);
 
   return true;
 }

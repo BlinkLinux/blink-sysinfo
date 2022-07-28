@@ -12,6 +12,8 @@ namespace devices {
 
 bool getDevicesInfo(DevicesInfo& info);
 
+bool getSpecificSection(const QString& name, QJsonObject& root);
+
 }  // namespace devices
 }  // namespace sysinfo
 

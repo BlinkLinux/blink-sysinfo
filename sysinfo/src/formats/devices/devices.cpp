@@ -9,15 +9,15 @@ namespace devices {
 
 QJsonObject dump(const DevicesInfo& info) {
   QJsonObject obj;
-  obj.insert("audioDevices", QJsonArray::fromStringList(info.audio_devices));
-  obj.insert("batteries", dump(info.batteries));
-  obj.insert("dmi", dump(info.dmi));
-  obj.insert("inputDevices", dump(info.input_list));
-  obj.insert("memory", dump(info.memory_info));
-  obj.insert("pciDevices", dump(info.pci_list));
-  obj.insert("sensors", dump(info.sensors));
-  obj.insert("storageDevices", dump(info.storage_list));
-  obj.insert("usbDevices", dump(info.usb_list));
+  obj.insert(kNameAudioDevices, QJsonArray::fromStringList(info.audio_devices));
+  obj.insert(kNameBatteries, dump(info.batteries));
+  obj.insert(kNameDmi, dump(info.dmi));
+  obj.insert(kNameInputDevices, dump(info.input_list));
+  obj.insert(kNameMemory, dump(info.memory_info));
+  obj.insert(kNamePciDevices, dump(info.pci_list));
+  obj.insert(kNameSensors, dump(info.sensors));
+  obj.insert(kNameStorageDevices, dump(info.storage_list));
+  obj.insert(kNameUsbDevices, dump(info.usb_list));
   return obj;
 }
 
