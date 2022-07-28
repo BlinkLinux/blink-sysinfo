@@ -42,6 +42,21 @@ struct ComputerInfo {
 
 QJsonObject dump(const ComputerInfo& info);
 
+constexpr const char* kNameComputer = "computer";
+constexpr const char* kNameBootupList = "bootupList";
+constexpr const char* kNameDevelopment = "development";
+constexpr const char* kNameDisplay = "display";
+constexpr const char* kNameEnvironment = "environment";
+constexpr const char* kNameFilesystems = "filesystems";
+constexpr const char* kNameGroups = "groups";
+constexpr const char* kNameLanguages = "languages";
+constexpr const char* kNameMemory = "memory";
+constexpr const char* kNameModules = "modules";
+constexpr const char* kNameOs = "os";
+constexpr const char* kNameSummary = "summary";
+constexpr const char* kNameUptime = "uptime";
+constexpr const char* kNameUsers = "users";
+
 }  // namespace computer
 }  // namespace sysinfo
 

@@ -12,6 +12,8 @@ namespace computer {
 
 bool getComputerInfo(ComputerInfo& info);
 
+bool getSpecificSection(const QString& name, QJsonObject& object);
+
 }  // namespace computer
 }  // namespace sysinfo
 

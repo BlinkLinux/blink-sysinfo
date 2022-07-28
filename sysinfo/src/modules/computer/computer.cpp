@@ -4,6 +4,8 @@
 
 #include "modules/computer/computer.h"
 
+#include <QDebug>
+
 #include "modules/computer/boots.h"
 #include "modules/computer/development.h"
 #include "modules/computer/display.h"
@@ -36,6 +38,72 @@ bool getComputerInfo(ComputerInfo& info) {
   ok &= getUptime(info.uptime);
   ok &= getUserList(info.users);
   return ok;
+}
+
+bool getSpecificSection(const QString& name, QJsonObject& object) {
+  QJsonObject computer;
+  if (object.contains(kNameComputer)) {
+    computer = object.value(kNameComputer).toObject();
+  }
+
+  if (name == kNameBootupList) {
+    BootupList bootup_list;
+    getBootup(bootup_list);
+    computer.insert(kNameBootupList, dump(bootup_list));
+  } else if (name == kNameDevelopment) {
+    Development development;
+    getDevelopmentEnv(development);
+    computer.insert(kNameDevelopment, dump(development));
+  } else if (name == kNameDisplay) {
+    Display display;
+    getDisplayInfo(display);
+    computer.insert(kNameDisplay, dump(display));
+  } else if (name == kNameEnvironment) {
+    const Environment environment = getEnvironment();
+    computer.insert(kNameEnvironment, QJsonArray::fromStringList(environment));
+  } else if (name == kNameFilesystems) {
+    FilesystemList list;
+    getFilesystems(list);
+    computer.insert(kNameFilesystems, dump(list));
+  } else if (name == kNameGroups) {
+    GroupList groups;
+    getGroupList(groups);
+    computer.insert(kNameGroups, dump(groups));
+  } else if (name == kNameLanguages) {
+    LanguageList list;
+    getLanguageList(list);
+    computer.insert(kNameLanguages, dump(list));
+  } else if (name == kNameMemory) {
+    Memory memory;
+    getMemoryInfo(memory);
+    computer.insert(kNameMemory, dump(memory));
+  } else if (name == kNameModules) {
+    ModuleList list;
+    getKernelModules(list);
+    computer.insert(kNameModules, dump(list));
+  } else if (name == kNameOs) {
+    OperationSystem os;
+    getOperationSystem(os);
+    computer.insert(kNameOs, dump(os));
+  } else if (name == kNameSummary) {
+    Summary summary;
+    getSummary(summary);
+    computer.insert(kNameSummary, dump(summary));
+  } else if (name == kNameUptime) {
+    Uptime uptime;
+    getUptime(uptime);
+    computer.insert(kNameUptime, dump(uptime));
+  } else if (name == kNameUsers) {
+    UserList list;
+    getUserList(list);
+    computer.insert(kNameUsers, dump(list));
+  } else {
+    qWarning() << "Unknown section: " << name;
+    return false;
+  }
+  object.insert(kNameComputer, computer);
+
+  return true;
 }
 
 }  // namespace computer
