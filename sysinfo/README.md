@@ -2,7 +2,7 @@
 # About
 
 ## Deps
-- Qt5
+- qtbase5-dev
 - cmake
 - g++
 - gtest
