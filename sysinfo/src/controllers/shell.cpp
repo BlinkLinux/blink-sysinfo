@@ -19,7 +19,6 @@
 #include "modules/network/network.h"
 
 namespace sysinfo {
-namespace {
 
 void writeObjectToStdout(const QJsonObject& object) {
   QJsonDocument doc;
@@ -29,40 +28,79 @@ void writeObjectToStdout(const QJsonObject& object) {
   write(STDOUT_FILENO, s.c_str(), s.size());
 }
 
+bool getAllSections(QJsonObject& object) {
+  computer::ComputerInfo computer_info;
+  computer::getComputerInfo(computer_info);
+  object.insert(computer::kNameComputer, dump(computer_info));
+
+  devices::DevicesInfo devices_info;
+  devices::getDevicesInfo(devices_info);
+  object.insert("devices", dump(devices_info));
+
+  network::NetworkInfo network_info;
+  network::getNetworkInfo(network_info);
+  object.insert("network", dump(network_info));
+
+  return true;
+}
+
+bool getSpecificSection(const QString& section, QJsonObject& object) {
+  if (section == computer::kNameComputer) {
+    computer::ComputerInfo info;
+    computer::getComputerInfo(info);
+    object = dump(info);
+    return true;
+  }
+
+  if (section == "devices") {
+    devices::DevicesInfo info;
+    devices::getDevicesInfo(info);
+    object = dump(info);
+    return true;
+  }
+
+  if (section == "network") {
+    network::NetworkInfo info;
+    network::getNetworkInfo(info);
+    object = dump(info);
+    return true;
+  }
+
+  const QStringList parts = section.split('.');
+  if (parts.length() == 2) {
+    const QString& parent = parts.at(0);
+    const QString& child = parts.at(1);
+    if (parent == computer::kNameComputer) {
+      return computer::getSpecificSection(child, object);
+    }
+  }
+
+  return false;
+}
+
 void readCommandLine() {
   QCommandLineParser parser;
   parser.addVersionOption();
   parser.addHelpOption();
-  QCommandLineOption computer_opt("computer", "Fetch computer info");
-  parser.addOption(computer_opt);
-  QCommandLineOption devices_opt("devices", "Fetch hardware devices info");
-  parser.addOption(devices_opt);
-  QCommandLineOption network_opt("network", "Fetch network related info");
-  parser.addOption(network_opt);
-
+  parser.addPositionalArgument("section",
+                               "Fetch specific section, like 'computer' or 'computer.os'",
+                               "[section]");
   parser.process(QCoreApplication::arguments());
 
-  if (parser.isSet(computer_opt)) {
-    computer::ComputerInfo info;
-    computer::getComputerInfo(info);
-    writeObjectToStdout(dump(info));
-    return;
-  }
-  if (parser.isSet(devices_opt)) {
-    devices::DevicesInfo info;
-    devices::getDevicesInfo(info);
-    writeObjectToStdout(dump(info));
-    return;
-  }
-  if (parser.isSet(network_opt)) {
-    network::NetworkInfo info;
-    network::getNetworkInfo(info);
-    writeObjectToStdout(dump(info));
-    return;
-  }
-}
+  const QStringList sections = parser.positionalArguments();
 
-}  // namespace
+  QJsonObject object;
+  if (sections.isEmpty()) {
+    getAllSections(object);
+  } else {
+    const QString& section = sections.first();
+    qDebug() << "specific section:" << section;
+    if (!getSpecificSection(section, object)) {
+      return;
+    }
+  }
+  writeObjectToStdout(object);
+}
 
 int initShell(int argc, char** argv) {
   QCoreApplication app(argc, argv);

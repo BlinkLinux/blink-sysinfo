@@ -5,9 +5,19 @@
 #ifndef SYSINFO_SRC_CONTROLLERS_SHELL_H_
 #define SYSINFO_SRC_CONTROLLERS_SHELL_H_
 
+#include <QJsonObject>
+
 namespace sysinfo {
 
 int initShell(int argc, char** argv);
+
+void writeObjectToStdout(const QJsonObject& object);
+
+void readCommandLine();
+
+bool getAllSections(QJsonObject& object);
+
+bool getSpecificSection(const QString& section, QJsonObject& object);
 
 }  // namespace sysinfo
 
