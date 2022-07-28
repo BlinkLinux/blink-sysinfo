@@ -9,11 +9,11 @@ namespace network {
 
 QJsonObject dump(const NetworkInfo& info) {
   QJsonObject obj;
-  obj.insert("arpList", dump(info.arp_list));
-  obj.insert("dnsList", dump(info.dns_list));
-  obj.insert("interfaces", dump(info.iface_list));
-  obj.insert("connections", dump(info.connection_list));
-  obj.insert("routingTable", dump(info.routing_table));
+  obj.insert(kNameArp, dump(info.arp_list));
+  obj.insert(kNameDns, dump(info.dns_list));
+  obj.insert(kNameInterfaces, dump(info.iface_list));
+  obj.insert(kNameConnections, dump(info.connection_list));
+  obj.insert(kNameRoutingTable, dump(info.routing_table));
   return obj;
 }
 

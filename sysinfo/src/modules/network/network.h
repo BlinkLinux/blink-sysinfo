@@ -12,6 +12,8 @@ namespace network {
 
 bool getNetworkInfo(NetworkInfo& info);
 
+bool getSpecificSection(const QString& name, QJsonObject& root);
+
 }  // namespace network
 }  // namespace sysinfo
 

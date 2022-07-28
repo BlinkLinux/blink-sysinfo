@@ -26,6 +26,13 @@ struct NetworkInfo {
 
 QJsonObject dump(const NetworkInfo& info);
 
+constexpr const char* kNameNetwork = "network";
+constexpr const char* kNameArp = "arp";
+constexpr const char* kNameDns = "dns";
+constexpr const char* kNameInterfaces = "interfaces";
+constexpr const char* kNameConnections = "connections";
+constexpr const char* kNameRoutingTable = "routingTable";
+
 }  // namespace network
 }  // namespace sysinfo
 

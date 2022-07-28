@@ -35,11 +35,11 @@ bool getAllSections(QJsonObject& object) {
 
   devices::DevicesInfo devices_info;
   devices::getDevicesInfo(devices_info);
-  object.insert("devices", dump(devices_info));
+  object.insert(devices::kNameDevices, dump(devices_info));
 
   network::NetworkInfo network_info;
   network::getNetworkInfo(network_info);
-  object.insert("network", dump(network_info));
+  object.insert(network::kNameNetwork, dump(network_info));
 
   return true;
 }
@@ -52,14 +52,14 @@ bool getSpecificSection(const QString& section, QJsonObject& object) {
     return true;
   }
 
-  if (section == "devices") {
+  if (section == devices::kNameDevices) {
     devices::DevicesInfo info;
     devices::getDevicesInfo(info);
     object = dump(info);
     return true;
   }
 
-  if (section == "network") {
+  if (section == network::kNameNetwork) {
     network::NetworkInfo info;
     network::getNetworkInfo(info);
     object = dump(info);
@@ -72,9 +72,13 @@ bool getSpecificSection(const QString& section, QJsonObject& object) {
     const QString& child = parts.at(1);
     if (parent == computer::kNameComputer) {
       return computer::getSpecificSection(child, object);
+    } else if (parent == devices::kNameDevices) {
+      return devices::getSpecificSection(child, object);
+    } else if (parent == network::kNameNetwork) {
+      return network::getSpecificSection(child, object);
     }
   }
-
+  qWarning() << "Invalid section:" << section;
   return false;
 }
 

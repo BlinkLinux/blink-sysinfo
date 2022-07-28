@@ -23,5 +23,40 @@ bool getNetworkInfo(NetworkInfo& info) {
   return ok;
 }
 
+bool getSpecificSection(const QString& name, QJsonObject& root) {
+  QJsonObject network;
+  if (root.contains(kNameNetwork)) {
+    network = root.value(kNameNetwork).toObject();
+  }
+  if (name == kNameArp) {
+    ArpList list;
+    getArpList(list);
+    network.insert(kNameArp, dump(list));
+  } else if (name == kNameDns) {
+    DnsServerList list;
+    getDnsServers(list);
+    network.insert(kNameDns, dump(list));
+  } else if (name == kNameInterfaces) {
+    NetworkInterfaceList list;
+    getNetworkInterfaces(list);
+    network.insert(kNameInterfaces, dump(list));
+  } else if (name == kNameConnections) {
+    IpConnectionList list;
+    getIpConnectionList(list);
+    network.insert(kNameConnections, dump(list));
+  } else if (name == kNameRoutingTable) {
+    RoutingList list;
+    getRoutingTable(list);
+    network.insert(kNameRoutingTable, dump(list));
+  } else {
+    qWarning() << "Unknown section:" << name;
+    return false;
+  }
+
+  root.insert(kNameNetwork, network);
+
+  return true;
+}
+
 }  // namespace network
 }  // namespace sysinfo
