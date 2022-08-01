@@ -52,7 +52,7 @@ QJsonObject dump(const Processor& processor) {
   obj.insert("microcode", processor.microcode);
   obj.insert("bugs", dump(processor.bugs));
 
-  obj.insert("strModel", processor.str_model);
+  obj.insert("familyModel", processor.family_model);
   obj.insert("cacheSize", processor.cache_size);
   obj.insert("modelId", processor.model_id);
   obj.insert("familyId", processor.family_id);

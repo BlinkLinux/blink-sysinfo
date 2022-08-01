@@ -144,6 +144,7 @@ bool getProcessorList(Processors& processors) {
     if (name.startsWith("processor")) {
       // finish previous
       if (processor_init) {
+        processor.family_model = getProcessorStringFamily(processor.vendor_id, processor.family_id, processor.model_id);
         processors.append(processor);
       }
       // start next
@@ -167,10 +168,10 @@ bool getProcessorList(Processors& processors) {
       processor.vendor_id = value;
     } else if (name == "flags") {
       const QStringList flags = value.split(' ');
-      for (const auto& flag : flags) {
-        processor.flags.append(ProcessorFlag {
-          .name = flag,
-          .description = getFlagDescription(flag),
+      for (const auto& flag: flags) {
+        processor.flags.append(ProcessorFlag{
+            .name = flag,
+            .description = getFlagDescription(flag),
         });
       }
 
@@ -180,10 +181,10 @@ bool getProcessorList(Processors& processors) {
       processor.microcode = value;
     } else if (name == "bugs") {
       const QStringList bugs = value.split(' ');
-      for (const auto& bug : bugs) {
-        processor.bugs.append(ProcessorBug {
-          .name = bug,
-          .description = getBugDescription(bug),
+      for (const auto& bug: bugs) {
+        processor.bugs.append(ProcessorBug{
+            .name = bug,
+            .description = getBugDescription(bug),
         });
       }
 
@@ -206,6 +207,7 @@ bool getProcessorList(Processors& processors) {
     }
   }
 
+  processor.family_model = getProcessorStringFamily(processor.vendor_id, processor.family_id, processor.model_id);
   processors.append(processor);
 
   return true;
@@ -471,10 +473,13 @@ QString getBugDescription(const QString& name) {
       {"spectre_v2", "CPU is affected by Spectre variant 2 attack with indirect branches"},
       {"spec_store_bypass", "Speculative execution exploit Variant 4"},
       {"swapgs", "A vulnerability that utilizes the branch prediction"},
-      {"itlb_multihit", "An erratum where some processors may incur a machine check error, possibly resulting in an unrecoverable CPU lockup, when an instruction fetch hits multiple entries in the instruction TLB"},
-      {"srbds", "Allows MDS MDS - Microarchitectural Data Sampling techniques to infer values returned from special register accesses"},
+      {"itlb_multihit",
+       "An erratum where some processors may incur a machine check error, possibly resulting in an unrecoverable CPU lockup, when an instruction fetch hits multiple entries in the instruction TLB"},
+      {"srbds",
+       "Allows MDS MDS - Microarchitectural Data Sampling techniques to infer values returned from special register accesses"},
       {"mmio_stale_data", "A class of memory-mapped I/O (MMIO) vulnerabilities that can expose data"},
-      {"retbleed", "A variant of the Spectre vulnerability which exploits retpoline, which was intended as a mitigation for speculative execution attacks"},
+      {"retbleed",
+       "A variant of the Spectre vulnerability which exploits retpoline, which was intended as a mitigation for speculative execution attacks"},
   };
   return flags.value(name);
 }

@@ -38,7 +38,7 @@ struct Processor {
   QString microcode{};
   QVector<ProcessorBug> bugs{};
 
-  QString str_model{};
+  QString family_model{};
   qint64 cache_size{};
   qint32 model_id{};
   qint32 family_id{};
