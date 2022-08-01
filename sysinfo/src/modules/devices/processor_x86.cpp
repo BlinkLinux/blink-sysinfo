@@ -469,6 +469,12 @@ QString getBugDescription(const QString& name) {
       {"cpu_meltdown", "CPU is affected by meltdown attack and needs kernel page table isolation"},
       {"spectre_v1", "CPU is affected by Spectre variant 1 attack with conditional branches"},
       {"spectre_v2", "CPU is affected by Spectre variant 2 attack with indirect branches"},
+      {"spec_store_bypass", "Speculative execution exploit Variant 4"},
+      {"swapgs", "A vulnerability that utilizes the branch prediction"},
+      {"itlb_multihit", "An erratum where some processors may incur a machine check error, possibly resulting in an unrecoverable CPU lockup, when an instruction fetch hits multiple entries in the instruction TLB"},
+      {"srbds", "Allows MDS MDS - Microarchitectural Data Sampling techniques to infer values returned from special register accesses"},
+      {"mmio_stale_data", "A class of memory-mapped I/O (MMIO) vulnerabilities that can expose data"},
+      {"retbleed", "A variant of the Spectre vulnerability which exploits retpoline, which was intended as a mitigation for speculative execution attacks"},
   };
   return flags.value(name);
 }
