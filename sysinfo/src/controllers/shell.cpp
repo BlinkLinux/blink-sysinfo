@@ -98,7 +98,6 @@ void readCommandLine() {
     getAllSections(object);
   } else {
     const QString& section = sections.first();
-    qDebug() << "specific section:" << section;
     if (!getSpecificSection(section, object)) {
       return;
     }
