@@ -15,5 +15,9 @@ TEST(ProcessorTest, TestGetProcesorList) {
   ASSERT_TRUE(ok);
 }
 
+TEST(ProcessorTest, TestIsLittleEndian) {
+  ASSERT_TRUE(isLittleEndian());
+}
+
 }  // namespace devices
 }  // namespace sysinfo

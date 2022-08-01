@@ -149,6 +149,7 @@ bool getProcessorList(Processors& processors) {
       // start next
       processor = Processor{};
       processor.id = value.toInt();
+      processor.is_little_endian = isLittleEndian();
       processor_init = true;
       continue;
     }
@@ -166,7 +167,6 @@ bool getProcessorList(Processors& processors) {
       processor.vendor_id = value;
     } else if (name == "flags") {
       const QStringList flags = value.split(' ');
-      qDebug() << "flags:" << flags;
       for (const auto& flag : flags) {
         processor.flags.append(ProcessorFlag {
           .name = flag,
