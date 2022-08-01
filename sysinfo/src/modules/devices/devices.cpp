@@ -10,6 +10,7 @@
 #include "modules/devices/input_devices.h"
 #include "modules/devices/memory.h"
 #include "modules/devices/pci.h"
+#include "modules/devices/processor.h"
 #include "modules/devices/sensors.h"
 #include "modules/devices/storage.h"
 #include "modules/devices/usb.h"
@@ -25,6 +26,7 @@ bool getDevicesInfo(DevicesInfo& info) {
   ok &= getInputDevices(info.input_list);
   ok &= getMemoryInfo(info.memory_info);
   ok &= getPciDevList(info.pci_list);
+  ok &= getProcessorList(info.processors);
   ok &= getSensorList(info.sensors);
   ok &= getStorageList(info.storage_list);
   ok &= getUsbDevices(info.usb_list);
@@ -61,6 +63,10 @@ bool getSpecificSection(const QString& name, QJsonObject& root) {
     PciDevList list;
     getPciDevList(list);
     devices.insert(kNamePciDevices, dump(list));
+  } else if (name == kNameProcessors) {
+    Processors list;
+    getProcessorList(list);
+    devices.insert(kNameProcessors, dump(list));
   } else if (name == kNameSensors) {
     Sensors sensors;
     getSensorList(sensors);

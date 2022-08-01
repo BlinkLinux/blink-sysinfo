@@ -15,6 +15,7 @@ QJsonObject dump(const DevicesInfo& info) {
   obj.insert(kNameInputDevices, dump(info.input_list));
   obj.insert(kNameMemory, dump(info.memory_info));
   obj.insert(kNamePciDevices, dump(info.pci_list));
+  obj.insert(kNameProcessors, dump(info.processors));
   obj.insert(kNameSensors, dump(info.sensors));
   obj.insert(kNameStorageDevices, dump(info.storage_list));
   obj.insert(kNameUsbDevices, dump(info.usb_list));

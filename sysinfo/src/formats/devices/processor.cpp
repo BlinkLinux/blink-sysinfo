@@ -9,8 +9,20 @@ namespace devices {
 
 QJsonObject dump(const Processor& processor) {
   QJsonObject obj;
-//  obj.insert("name", processor.name);
-  // TODO(Shaohua): Add additional fields.
+  obj.insert("id", processor.id);
+  obj.insert("modelName", processor.model_name);
+  obj.insert("vendorId", processor.vendor_id);
+  obj.insert("flags", processor.flags);
+
+  obj.insert("cacheSize", processor.cache_size);
+  obj.insert("modelId", processor.model_id);
+  obj.insert("familyId", processor.family_id);
+
+  obj.insert("cpuMhz", processor.cpu_mhz);
+
+  obj.insert("hasFpu", processor.has_fpu);
+  obj.insert("isLittleEndian", processor.is_little_endian);
+
   return obj;
 }
 

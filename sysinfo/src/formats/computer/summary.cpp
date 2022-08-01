@@ -12,7 +12,6 @@ QJsonObject dump(const Summary& summary) {
   obj.insert("processors", dump(summary.processors));
   obj.insert("board", dump(summary.board));
   obj.insert("audioDevices", QJsonArray::fromStringList(summary.audio_devices));
-  // TODO(Shaohua): Add more fields.
   return obj;
 }
 

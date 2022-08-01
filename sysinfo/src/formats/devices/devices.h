@@ -13,6 +13,7 @@
 #include "formats/devices/input_devices.h"
 #include "formats/devices/memory.h"
 #include "formats/devices/pci.h"
+#include "formats/devices/processor.h"
 #include "formats/devices/sensors.h"
 #include "formats/devices/storage.h"
 #include "formats/devices/usb.h"
@@ -27,6 +28,7 @@ struct DevicesInfo {
   InputDevList input_list{};
   MemoryInfos memory_info{};
   PciDevList pci_list{};
+  Processors processors{};
   Sensors sensors{};
   StorageList storage_list{};
   UsbDevList usb_list{};
@@ -41,6 +43,7 @@ constexpr const char* kNameDmi = "dmi";
 constexpr const char* kNameInputDevices = "input";
 constexpr const char* kNameMemory = "memory";
 constexpr const char* kNamePciDevices = "pci";
+constexpr const char* kNameProcessors = "processors";
 constexpr const char* kNameSensors = "sensors";
 constexpr const char* kNameStorageDevices = "storage";
 constexpr const char* kNameUsbDevices = "usb";
