@@ -13,23 +13,28 @@
 namespace sysinfo {
 namespace devices {
 
+struct ProcessorFlag {
+  QString name{};
+  QString description{};
+};
+
 struct Processor {
   // processor id
   qint32 id{};
+  qint32 physical_id{};
+  qint32 cpu_cores{};
+  qint32 core_id{};
+
   QString model_name{};
   QString vendor_id{};
-  QString flags{};
+  QVector<ProcessorFlag> flags{};
 
   QString power_management{};
   QString microcode{};
-  QString bugs{};
-  QString fdiv_bug{};
-  QString hlt_bug{};
-  QString f00f_bug{};
-  QString coma_bug{};
+  QStringList bugs{};
 
   QString str_model{};
-  qint32 cache_size{};
+  qint64 cache_size{};
   qint32 model_id{};
   qint32 family_id{};
   qint32 stepping{};
@@ -43,6 +48,7 @@ struct Processor {
 
 using Processors = QVector<Processor>;
 
+QJsonObject dump(const ProcessorFlag& flag);
 QJsonObject dump(const Processor& processor);
 QJsonArray dump(const Processors& processors);
 
