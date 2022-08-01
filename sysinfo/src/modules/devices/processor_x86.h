@@ -12,6 +12,12 @@ namespace devices {
 
 QString getProcessorStringFamily(const QString& vendor_id, qint32 family, qint32 model);
 
+QString getFlagDescription(const QString& name);
+
+QString getBugDescription(const QString& name);
+
+QString getPowerDescription(const QString& name);
+
 }  // namespace devices
 }  // namespace sysinfo
 
