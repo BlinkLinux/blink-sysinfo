@@ -14,6 +14,29 @@ QJsonObject dump(const ProcessorFlag& flag) {
   return obj;
 }
 
+QJsonArray dump(const QVector<ProcessorFlag>& flags) {
+  QJsonArray array;
+  for (const auto& flag : flags) {
+    array.append(dump(flag));
+  }
+  return array;
+}
+
+QJsonObject dump(const ProcessorBug& bug) {
+  QJsonObject obj;
+  obj.insert("name", bug.name);
+  obj.insert("description", bug.description);
+  return obj;
+}
+
+QJsonArray dump(const QVector<ProcessorBug>& bugs) {
+  QJsonArray array;
+  for (const auto& bug : bugs) {
+    array.append(dump(bug));
+  }
+  return array;
+}
+
 QJsonObject dump(const Processor& processor) {
   QJsonObject obj;
   obj.insert("id", processor.id);
@@ -23,15 +46,11 @@ QJsonObject dump(const Processor& processor) {
 
   obj.insert("modelName", processor.model_name);
   obj.insert("vendorId", processor.vendor_id);
-  QJsonArray flags;
-  for (const ProcessorFlag& flag: processor.flags) {
-    flags.append(dump(flag));
-  }
-  obj.insert("flags", flags);
+  obj.insert("flags", dump(processor.flags));
 
   obj.insert("powerManagement", processor.power_management);
   obj.insert("microcode", processor.microcode);
-  obj.insert("bugs", QJsonArray::fromStringList(processor.bugs));
+  obj.insert("bugs", dump(processor.bugs));
 
   obj.insert("strModel", processor.str_model);
   obj.insert("cacheSize", processor.cache_size);

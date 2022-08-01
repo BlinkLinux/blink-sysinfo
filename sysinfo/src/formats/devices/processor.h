@@ -18,6 +18,11 @@ struct ProcessorFlag {
   QString description{};
 };
 
+struct ProcessorBug {
+  QString name{};
+  QString description{};
+};
+
 struct Processor {
   // processor id
   qint32 id{};
@@ -31,7 +36,7 @@ struct Processor {
 
   QString power_management{};
   QString microcode{};
-  QStringList bugs{};
+  QVector<ProcessorBug> bugs{};
 
   QString str_model{};
   qint64 cache_size{};
@@ -49,6 +54,9 @@ struct Processor {
 using Processors = QVector<Processor>;
 
 QJsonObject dump(const ProcessorFlag& flag);
+QJsonArray dump(const QVector<ProcessorFlag>& flags);
+QJsonObject dump(const ProcessorBug& bug);
+QJsonArray dump(const QVector<ProcessorBug>& bugs);
 QJsonObject dump(const Processor& processor);
 QJsonArray dump(const Processors& processors);
 

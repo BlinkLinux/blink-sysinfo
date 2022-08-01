@@ -168,10 +168,9 @@ bool getProcessorList(Processors& processors) {
       const QStringList flags = value.split(' ');
       qDebug() << "flags:" << flags;
       for (const auto& flag : flags) {
-        const QString desc = getFlagDescription(flag);
         processor.flags.append(ProcessorFlag {
           .name = flag,
-          .description = desc,
+          .description = getFlagDescription(flag),
         });
       }
 
@@ -180,7 +179,13 @@ bool getProcessorList(Processors& processors) {
     } else if (name == "microcode") {
       processor.microcode = value;
     } else if (name == "bugs") {
-      processor.bugs = value.split(' ');
+      const QStringList bugs = value.split(' ');
+      for (const auto& bug : bugs) {
+        processor.bugs.append(ProcessorBug {
+          .name = bug,
+          .description = getBugDescription(bug),
+        });
+      }
 
     } else if (name == "cache size") {
       processor.cache_size = parseMemSize(value);
