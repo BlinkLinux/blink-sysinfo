@@ -151,6 +151,8 @@ bool getProcessorList(Processors& processors) {
       processor = Processor{};
       processor.id = value.toInt();
       processor.is_little_endian = isLittleEndian();
+      getProcessorCache(processor.id, processor.caches);
+      getProcessorFrequency(processor.id, processor.frequency);
       processor_init = true;
       continue;
     }

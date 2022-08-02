@@ -19,5 +19,12 @@ TEST(ProcessorTest, TestIsLittleEndian) {
   ASSERT_TRUE(isLittleEndian());
 }
 
+TEST(ProcessorTest, TestGetCache) {
+  ProcessorCaches list;
+  const bool ok = getProcessorCache(0, list);
+  ASSERT_TRUE(ok);
+  ASSERT_FALSE(list.isEmpty());
+}
+
 }  // namespace devices
 }  // namespace sysinfo
