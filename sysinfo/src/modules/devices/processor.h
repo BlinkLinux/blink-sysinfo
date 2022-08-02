@@ -16,8 +16,11 @@ constexpr const char* kProcCpuInfo = "/proc/cpuinfo";
 
 bool isLittleEndian();
 
-QString getCpuString(const QString& filename, qint32 cpuid);
-qint32 getCpuInteger(const QString& file, qint32 cpuid);
+QString getCpuFilepath(const QString& filename, qint32 cpuid);
+
+bool getProcessorCache(qint32 cpuid, ProcessorCaches& caches);
+
+bool getProcessorFrequency(qint32 cpuid, ProcessorFrequency& frequency);
 
 }  // namespace devices
 }  // namespace sysinfo
