@@ -111,6 +111,9 @@ QJsonObject dump(const Processor& processor) {
   obj.insert("microcode", processor.microcode);
   obj.insert("bugs", dump(processor.bugs));
 
+  obj.insert("caches", dump(processor.caches));
+  obj.insert("frequency", dump(processor.frequency));
+
   obj.insert("familyModel", processor.family_model);
   obj.insert("cacheSize", processor.cache_size);
   obj.insert("modelId", processor.model_id);
