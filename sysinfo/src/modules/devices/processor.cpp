@@ -62,10 +62,10 @@ bool getProcessorFrequency(qint32 cpuid, ProcessorFrequency& frequency) {
   frequency.scaling_min_freq_khz = read_int("scaling_min_freq");
   frequency.scaling_cur_freq_khz = read_int("scaling_cur_freq");
 
-  frequency.scaling_driver = readTextFile(freq_dir.absoluteFilePath("scaling_driver"));
-  frequency.scaling_governor = readTextFile(freq_dir.absoluteFilePath("scaling_governor"));
+  frequency.scaling_driver = readTextFile(freq_dir.absoluteFilePath("scaling_driver")).trimmed();
+  frequency.scaling_governor = readTextFile(freq_dir.absoluteFilePath("scaling_governor")).trimmed();
   const auto governors = readTextFile(freq_dir.absoluteFilePath("scaling_available_governors"));
-  frequency.scaling_available_governors = governors.split(' ');
+  frequency.scaling_available_governors = governors.trimmed().split(' ');
 
   return true;
 }
