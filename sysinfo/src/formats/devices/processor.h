@@ -65,6 +65,8 @@ struct Processor {
 
   QString model_name{};
   QString vendor_id{};
+  QString vendor_name{};
+  QString vendor_url{};
   QVector<ProcessorFlag> flags{};
 
   QString power_management{};

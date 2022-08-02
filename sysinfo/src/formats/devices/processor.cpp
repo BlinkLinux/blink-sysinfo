@@ -105,6 +105,8 @@ QJsonObject dump(const Processor& processor) {
 
   obj.insert("modelName", processor.model_name);
   obj.insert("vendorId", processor.vendor_id);
+  obj.insert("vendorName", processor.vendor_name);
+  obj.insert("vendorUlr", processor.vendor_url);
   obj.insert("flags", dump(processor.flags));
 
   obj.insert("powerManagement", processor.power_management);

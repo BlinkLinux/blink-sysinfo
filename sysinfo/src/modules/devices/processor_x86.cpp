@@ -9,6 +9,7 @@
 #include "base/file.h"
 #include "base/unit.h"
 #include "modules/devices/processor.h"
+#include "modules/shared/vendor.h"
 
 namespace sysinfo {
 namespace devices {
@@ -168,6 +169,8 @@ bool getProcessorList(Processors& processors) {
       processor.model_name = value;
     } else if (name == "vendor_id") {
       processor.vendor_id = value;
+      processor.vendor_name = getVendorName(processor.vendor_id);
+      processor.vendor_url = getVendorUrl(processor.vendor_id);
     } else if (name == "flags") {
       const QStringList flags = value.split(' ');
       for (const auto& flag: flags) {
