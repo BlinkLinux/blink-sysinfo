@@ -54,6 +54,10 @@ QString dump(ProcessorCacheType type) {
   }
 }
 
+ProcessorCacheType parse(const QString& s) {
+  return ProcessorCacheType::Instruction;
+}
+
 QJsonObject dump(const ProcessorCache& cache) {
   QJsonObject obj;
   obj.insert("size", cache.size);
@@ -63,16 +67,11 @@ QJsonObject dump(const ProcessorCache& cache) {
   obj.insert("numberOfSets", cache.number_of_sets);
   obj.insert("physicalLinePartition", cache.physical_line_partition);
   obj.insert("waysOfAssociativity", cache.ways_of_associativity);
-  QJsonArray list;
-  for (const auto& cpu : cache.shared_cpu_list) {
-    list.append(QJsonValue::fromVariant(cpu));
-  }
-  obj.insert("sharedCpu", list);
   obj.insert("type", dump(cache.type));
   return obj;
 }
 
-QJsonArray dump(const QVector<ProcessorCache>& caches) {
+QJsonArray dump(const ProcessorCaches& caches) {
   QJsonArray array;
   for (const auto& cache : caches) {
     array.append(dump(cache));

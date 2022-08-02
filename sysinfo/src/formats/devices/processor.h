@@ -37,9 +37,10 @@ struct ProcessorCache {
   qint32 number_of_sets{};
   qint32 physical_line_partition{};
   qint32 ways_of_associativity{};
-  QVector<qint32> shared_cpu_list{};
   ProcessorCacheType type{};
 };
+
+using ProcessorCaches = QVector<ProcessorCache>;
 
 struct ProcessorFrequency {
   qint32 base_freq_khz{};
@@ -70,7 +71,7 @@ struct Processor {
   QString microcode{};
   QVector<ProcessorBug> bugs{};
 
-  QVector<ProcessorCache> caches{};
+  ProcessorCaches caches{};
   ProcessorFrequency frequency{};
 
   QString family_model{};
@@ -93,8 +94,9 @@ QJsonArray dump(const QVector<ProcessorFlag>& flags);
 QJsonObject dump(const ProcessorBug& bug);
 QJsonArray dump(const QVector<ProcessorBug>& bugs);
 QString dump(ProcessorCacheType type);
+ProcessorCacheType parse(const QString& s);
 QJsonObject dump(const ProcessorCache& cache);
-QJsonArray dump(const QVector<ProcessorCache>& caches);
+QJsonArray dump(const ProcessorCaches& caches);
 QJsonObject dump(const ProcessorFrequency& frequency);
 QJsonObject dump(const Processor& processor);
 QJsonArray dump(const Processors& processors);
