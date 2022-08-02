@@ -80,6 +80,23 @@ QJsonArray dump(const QVector<ProcessorCache>& caches) {
   return array;
 }
 
+QJsonObject dump(const ProcessorFrequency& frequency) {
+  QJsonObject obj;
+  obj.insert("baseFreqKhz", frequency.base_freq_khz);
+  obj.insert("maxFreqKhz", frequency.cpuinfo_max_freq_khz);
+  obj.insert("minFreqKhz", frequency.cpuinfo_min_freq_khz);
+  obj.insert("transitionLatencyNanoseconds", frequency.cpuinfo_transition_latency_ns);
+
+  obj.insert("scalingAvailableGovernors", QJsonArray::fromStringList(frequency.scaling_available_governors));
+  obj.insert("scalingGovernor", frequency.scaling_governor);
+  obj.insert("scalingDriver", frequency.scaling_driver);
+  obj.insert("scalingCurrentFreqKhz", frequency.scaling_cur_freq_khz);
+  obj.insert("scalingMaxFreqKhz", frequency.scaling_max_freq_khz);
+  obj.insert("scalingMinFreqKhz", frequency.scaling_min_freq_khz);
+
+  return obj;
+}
+
 QJsonObject dump(const Processor& processor) {
   QJsonObject obj;
   obj.insert("id", processor.id);

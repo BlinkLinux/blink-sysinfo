@@ -41,6 +41,20 @@ struct ProcessorCache {
   ProcessorCacheType type{};
 };
 
+struct ProcessorFrequency {
+  qint32 base_freq_khz{};
+  qint32 cpuinfo_max_freq_khz{};
+  qint32 cpuinfo_min_freq_khz{};
+  qint32 cpuinfo_transition_latency_ns{};
+
+  QStringList scaling_available_governors{};
+  QString scaling_governor{};
+  QString scaling_driver{};
+  qint32 scaling_cur_freq_khz{};
+  qint32 scaling_max_freq_khz{};
+  qint32 scaling_min_freq_khz{};
+};
+
 struct Processor {
   // processor id
   qint32 id{};
@@ -57,6 +71,7 @@ struct Processor {
   QVector<ProcessorBug> bugs{};
 
   QVector<ProcessorCache> caches{};
+  ProcessorFrequency frequency{};
 
   QString family_model{};
   qint64 cache_size{};
@@ -80,6 +95,7 @@ QJsonArray dump(const QVector<ProcessorBug>& bugs);
 QString dump(ProcessorCacheType type);
 QJsonObject dump(const ProcessorCache& cache);
 QJsonArray dump(const QVector<ProcessorCache>& caches);
+QJsonObject dump(const ProcessorFrequency& frequency);
 QJsonObject dump(const Processor& processor);
 QJsonArray dump(const Processors& processors);
 
