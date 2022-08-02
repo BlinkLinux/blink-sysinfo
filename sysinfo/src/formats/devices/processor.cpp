@@ -37,6 +37,49 @@ QJsonArray dump(const QVector<ProcessorBug>& bugs) {
   return array;
 }
 
+QString dump(ProcessorCacheType type) {
+  switch (type) {
+    case ProcessorCacheType::Data: {
+      return "data";
+    }
+    case ProcessorCacheType::Instruction: {
+      return "instruction";
+    }
+    case ProcessorCacheType::Unified: {
+      return "unified";
+    }
+    default: {
+      return {};
+    }
+  }
+}
+
+QJsonObject dump(const ProcessorCache& cache) {
+  QJsonObject obj;
+  obj.insert("size", cache.size);
+  obj.insert("coherencyLineSize", cache.coherency_line_size);
+  obj.insert("id", cache.id);
+  obj.insert("level", cache.level);
+  obj.insert("numberOfSets", cache.number_of_sets);
+  obj.insert("physicalLinePartition", cache.physical_line_partition);
+  obj.insert("waysOfAssociativity", cache.ways_of_associativity);
+  QJsonArray list;
+  for (const auto& cpu : cache.shared_cpu_list) {
+    list.append(QJsonValue::fromVariant(cpu));
+  }
+  obj.insert("sharedCpu", list);
+  obj.insert("type", dump(cache.type));
+  return obj;
+}
+
+QJsonArray dump(const QVector<ProcessorCache>& caches) {
+  QJsonArray array;
+  for (const auto& cache : caches) {
+    array.append(dump(cache));
+  }
+  return array;
+}
+
 QJsonObject dump(const Processor& processor) {
   QJsonObject obj;
   obj.insert("id", processor.id);

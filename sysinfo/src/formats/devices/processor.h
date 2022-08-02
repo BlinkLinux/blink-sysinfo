@@ -23,6 +23,24 @@ struct ProcessorBug {
   QString description{};
 };
 
+enum class ProcessorCacheType : quint8 {
+  Data,
+  Instruction,
+  Unified,
+};
+
+struct ProcessorCache {
+  qint64 size{};
+  qint32 coherency_line_size{};
+  qint32 id{};
+  qint32 level{};
+  qint32 number_of_sets{};
+  qint32 physical_line_partition{};
+  qint32 ways_of_associativity{};
+  QVector<qint32> shared_cpu_list{};
+  ProcessorCacheType type{};
+};
+
 struct Processor {
   // processor id
   qint32 id{};
@@ -37,6 +55,8 @@ struct Processor {
   QString power_management{};
   QString microcode{};
   QVector<ProcessorBug> bugs{};
+
+  QVector<ProcessorCache> caches{};
 
   QString family_model{};
   qint64 cache_size{};
@@ -57,6 +77,9 @@ QJsonObject dump(const ProcessorFlag& flag);
 QJsonArray dump(const QVector<ProcessorFlag>& flags);
 QJsonObject dump(const ProcessorBug& bug);
 QJsonArray dump(const QVector<ProcessorBug>& bugs);
+QString dump(ProcessorCacheType type);
+QJsonObject dump(const ProcessorCache& cache);
+QJsonArray dump(const QVector<ProcessorCache>& caches);
 QJsonObject dump(const Processor& processor);
 QJsonArray dump(const Processors& processors);
 
