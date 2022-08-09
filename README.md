@@ -21,10 +21,9 @@ Get system software and hardware information on Linux.
 ```bash
 cmake -B build -G Ninja
 cmake --build build
-DESTDIR=dist ninja -C build install
 ```
 
-Executable file located at `build/dist/usr/local/bin/sysinfo`.
+Executable file is located at `build/src/app/sysinfo`.
 
 ## Copyright
 This project is released under GNU General Public License which can be found in
