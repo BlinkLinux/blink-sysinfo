@@ -6,7 +6,7 @@ Get system software and hardware information on Linux.
 - qtbase5-dev
 - cmake
 - g++
-- gtest
+- googletest
 - kmod
 - lsb-release
 - mesa-utils
